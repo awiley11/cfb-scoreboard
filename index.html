@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CFB Board">
+<meta name="theme-color" content="#0a0d12">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAo70lEQVR42u2deZiU1ZX/z7n3vmutvSM7NCIgDSg74oJGAcGMg0Lilowm+kwSNf7iZDXDRCeZrCaZjDqTqHFi3J2ZaDSucQdRI1FA9rXZaXqp9a163/cuvz/e7rbRZolUNd3wfp96fKC5VdXW/dS555577jloxyohVKjuRMKPIFQIR6gQjlAhHKFCOEKFcIQK4QgVwhEqhCNUCEeoEI5QoUI4QoVwhArhCBXCESqEI1QIR6gQjlAhHKFCOEKFcIQKFcIRKoQjVAhHqBCOUCEcoUI4QoVwhArhCBXCESqEI1SoEI5QIRyhQjhChXCECuEIdUzFTpz/VURs/0IQ8vEfdiulVNc/B3/t+sMQjj7JQacAQEoJAJ7nBX/mrguAgABKAojDWFakoABAEU1jmgZKaZrW+eKqi0I4ei8NhJDO2fJ93/d96fsAHACA6EhIXV0dKBWLxerrh0ulpBAVFRUNDWOFkIDd2AxG6bbG7dsbtxHKCOLeffv27N7NNG3//mav6ILiAAKAAWW6rjPGKKXBLyClPD5YYccBEEIIz/N81wPlAVCi6dVVlSf17z9o4MBx48bZtj1+wjjLtEaOPJkSqht6dWUymDo8gnfpHJnNF9LpNGNs06bNTj63es3adCq1bsOGxm3bG7c3tra2OdlMgAszDE3TGGPti5GUfZQU7HNFagkhhBAhhOu63C0CCN2K9aurqx9RP67h1HHjxg8dOqS+fnhlZVUsYnV9ouuLYFnxfR54GsHMHerTIYhIAEApYIxSShWAodGuVBU93tra2tjYuH37jhUrV65auWr9+g27d+/JZ1MAQDTDMExNY33RovQNOAIjAQBciELeAekyIzJ0yJDTJoyfPmP61KlT6uvrq6urOifN45JzzjlXSoFSAIAIiAhKBa8V2AQkiFQDpbqxIQoAUQmhpGj/V6mUktC+cnXSQygljGl6F2Ja2tI7duxY/u67by57a/ny5Zs3b8ll2gCYYdu6rgeA9glKejscgZ1wXdd1HABpxxKTJ00655yzzjnnnPHjGiqS8WAeXY/7vi+lBFAIgABICAASyoAQotF2PgAUgBLtS4X0uZ9rA0T4+EwhgJTUjjHLAgkAgLTj6QoAQHGppFSCKyWV7GAQAJFqGtM7YMk5hU2bNr366muvv77kjTeWNDc1AUhm2JZl9n5KeikciEgpFULkczmQXnXtgDPPnDF/3oWnT5x46pgxGiMAUHB93/eVktixPSFUQ8qQIUFQAEqCn8sI13H2bgOlcjs3iGJWFHK5HeuBUEQUhbzT1Iik22APKsGNilo9UaOUUoJbNQPNqpMASGzoWCDEqhnI7LgWrUAKwdtJDkpwKXwlZWBcEAljzDD0AJTNWxuXL//rCy+8+PIrL2/dtBkArGhM0zQppTzk6hbCcYCpKBaLXiFHdfuM6dPmXzTv0ksWDBs6GACEgkKhKITAwBIQQphONBqsGH4u42dTzp4t+V0bnH2NbsvuYusenk/7uVTHt1wgEiT0w1VB00EdxBNFVIIrwTv2L1JJiQDIdAClRSuoaVs1g7R4VaR/vd1veGTACD1RrUUrKQMFIH0pfU9JIRUoUIjEsqzAnuxvaX3mmeeeeOKJl19+LZPaTzXbjtgAIIQI4TgoFojoOI7wnAGDh140b/5ll31mxowZjKLHZbFYVEohACFIqEZ0jRCQAtxUc27Humzj6tyOddltH/Bc2s+nFPcBCRKCTEdCkDIEDPwOUAo6cVCgQB1Z5Aw6QiMQ+ChScJBSck9JqaRAQpkd1yKxSP+TY0PHRgeNig091ajqT3WqFEiPS+6rwD4gGrpu6gwAVq9Z9/j//M/jj//fmg9WAaHRWCzYfIVwHOhvUprP5aTvjRnbsPDSS6699poB/U8CgJxTFEIQBEQkTKOGBgBeNpvbsT61dllm84rczg1uqkn6LhJKNAMpJZR17FI7XMeyrOsBb9gJjRJcSSF9TwkfKdNiFfZJ9fFhDclRU+L1E4xkNRIQnpS+G+xuEdG2bUYgm3Mefeyx++///dI335K+H00kOgN3JzQcgW9RKBT8ojP+tNNvuOErCxdeGo9GXF8Ui0VEIIDIGDN1AHDTqfSGd5vffyW17p1iy27pOkgZ0UzCtGDZV0oG0cxjG5oN7JMUXPqu8j1kupGsiQ0fX3PauRWjp5q1AxFBeEL6rlJKKtA0zTZ1oeDPL/75F7/81fMvvAgA8XhcCHFs3dVjCUfgcjrZtiHDRiz+51sWLloUi1hO0fN9nyAiIjVMwtDP59vWvNny/quta98qNm1XUhLdJJqOhIKS6sONQm8M4gMigJLcl15BSWUkaxIjJ1aNn1XVMNOs7qckiGIxCIAgIbGIpQBeePGlW2/9/rKlr+lWzDRNzvmJBUdgMDKplB2J3nTTjdd/5Usn9avNF1zOOSWIiNSyACC/c3PTO880/eW5/M4NSkpqmEQzAFApCX0rPo3twbQOSoRZPbD6tFl10y5KjDidaIQXPCW5VACI8YiVLxQffeTR2/71B41bN0fjlYDHZpU5BnBQynzfK+Yzc+dd9KMf/WDc2FODRYQSBERmWaCgZeUbu195uG3t2362jegmNaxgvwB9/cyikxLfFa5DdCtRP77fzAV10+Yxy+IFN9jdUEojlrFnX9MPf/jju+78T4UYjUZ73oT0NByMsUxbW0V11a3fW/zlL/0jImZzeUIQAZltgYLWVUu2P39f2wdLpBDMjCBlSilQEo4zISISpaQoOkrw2NBTB13wudop85jdjoiQyjQNQ2PPPv/i17729XVrVkYTVT3sqPYcHIQQUCqXaZ1z4fxf/Pz2UaecnM0XlFIEgJoWUmxZuWTH8/e1rloCSjIrBohKCjjeFURyhetI34sNGzvwU1f1m34RMQyedxSilDIRi7S2pb5362133HGXrhu6YfTYXreH4CCU+q7red7ixd9d/M+3KIBcLk8JQUI0y8jt2rL1iTv2LXsKAJkVPUGwONCOEEAUriO8YsWoKcMvualy7PRgRxNsZyxDe+zx//3K9Te2tLTG4vGeWWJ6Ag5KqVssmqbxy1/+/OrPX5XNFwAAlaKWrbi3/dl7dzx3n5dp1qJJgBMOi48iQgh3skhIv5kLhl98g1nTz885gMiFSMajb7/z7lWfv3rjxo3xeKIH+Cg7HJTSguMkk4mnnnpy2pRJqUyOMQagdNtKb1m9/ne3pta/o0XiyDQlTlwsPrrQKPBzbWbNoBGXf/ukaXP9ogdS+EImYpHm5tb5n774nWVvJiqrfd/vw3AEZCSSiT89/cepkyemMjmNUSCUMrbz5Ye2/M8vuZNmkYSSAk6YxMwjnRjKpFuQwh/4qc8Nv+Sr1IgIrygk2JaZTqfmXdQTfJQRDkJpsSsZ2bxGCDKGBNfff9uO5/9bj1cgYSfyOnJYG4IIXrq5Ysz0sdf/h56sFUVHKrDMD/mIV1SVb30pFxyEEO77sXjsj0/+YdqUSalsnhFCdZ072ZW/+kpq7VtaLKmkDA3GkZgQ7mSNZG3DV+9KjGjwc46Edj7mf/rv//L2O5FYrEz7l7LAEaRd5XP5Z555es4F56UyOY1Souu8kF1x+3Xpje9qscrOo/BQR8AHFQWHReLjb76nk4+Ibe3b1zRl6oym/U2GYZYj/kHKYzZYLt36s9t/OueC81LZvEYpaloHGct7hgwMjuwJCQIJx3z80UgJQS2bF7Irbv9ietMqFrEJQs4pnHRS3UMPP0AIkUIc+gLOJ3QZNcMq8Ssylk23Lbrs8tt/8sOcU6CIhDHFvfdvvza9cbkWq+gZmyG9gvSK0vek7yEhiPTYjj9qQBRhunDzTe88V9Vwlll9EnBedL1TRgyPRONP//GPphVRpY4jl3hZQUTu+8lkYvm779TUVLuejwjMMNbe+91dLz9kJGsk98sPBiopYoNHsWhCCYmE5Has83MppOwgLk65x5fU/8hnokPGnPaN+6gZkVwogKhtnnfBha+89FIskSyt81HieyuEELfgfOenPx7Qv186m6cEddve/sJDu156wEjW9ggZgIjCd+sXfaNqzCTuSaaTv/7supb3X2F2rNv0iHKPL+n6wlk0ntn8/oYHfjD2yz+TvBBci/m3H/zrp95+q+RuKSktGYV8vmHCadd+4ep8waUEqWHkdm7d8n+/0KIVsme3rNIrcim5m+dCqiNw1so9vmR8cK7Hq/a++cTeN5/RIhZByBWK06ZMWvTZy5xsKrhJ1RvhQETuuzd99QbLNDjngASRbHzkR362DRnr6V0rIiIJHr1ifCndD0k1c9NjP3Zbm4mmEQCfi5tuvD6aqPB9v4SeKSmp2XBOHTdh0cJLnKJHCTLTaFm1tGXFq5odD0PjJXZODbPQtH3XK49QXUOEQtEdN3bMgksWFHIZSmlvhIP7zrx5c6MRO4jpIuKuVx9RUoRFQEqPhxTMiOxZ8n9eJo1MC1KpF1x8MRBaQr+nZPMmhNDMyLwLL5RSIQA1zNyOzak1y5gZVUKG01l646EbhabtLe+/ygwNAVxfnDFj+rDh9cVCsVQrCymV2XCL7uDBQxrGnur6HBEoI80rXvGyrchoOJVlAgQAmpY/r6RCQjzPq66qmDjxdN8tEEJ6ERyIyD130qSJFcm47/tIiBSybc2bJLimXD6nk5CDPGjXqGVwy+3gg8s4vnzBU6UU1a3slpXF1v2EaUpKpWDmzDMQS/aBs1LBAeCPHHkyACgpiWZ42Yyzdythehm3/krxQu7j8CESXswr+WEcVrgOdzIA3RdcKOt4optIWFmu0ihFmOalW4r7Gs2qWigCIpwycqSCkrkdrFQUA9EGDxrU/vEx6rbt9XPpMgYNlULGKkbMIEEG8oG3FoVX1KJJJSUgKinjw8cBKGrY3Qe1yjReqbIHTxGl8J2mxopTJyOAkKqurjYWj3MhCCFHj0jp4EA2bNiwTmvvpZpEIcesqCpH4jiiEoIZkYbr79BiUSW6Md7S96XnI6HS9+sXfeOwwYiSj1cKGIXyBk8RlBTF5t1BnQFfyP79+8cTif3795fE7ShhQE0FFdnaf23KoOzRIcULOWRMcQ4f88+R0M4fCtcBJQ+9/Jd8vFISTKsHAjzYERVFAM55CYPopYy2apr24UcjRNkvmyAyO84ss9t5lB7vzDGjpn14S1Dq8UoBI4CUlfvubtdTbkppqbYqJYVDyZbW1s5VhllRohtl9EYRFedta96kdhQ+8l1BVFJEB43WogklBFKa2bKK51JIafcLf3nGK1BUN/xcCkn5HC9AJFokGVSVIIjpTMZ1i6XiozRwEEJAeuvWresw98KsHaxFk342VZZTFaWQEOHmV91x/cF2K6d/+8GqCWfyvEdNc/NjP2l5/2Vmxw+x+yjTeKIZRDdV+bxyyiL9RygFSimNkcZtjS3NLdFYrCSJYSVcVuju3buDba0SXIvEjKr+XqqJaFrZ7Acyw+528qD9JtmH+0lmRpkZOdhkl2+8Kt/aiqiE0CJxs3pA4NkogN179gCI3hUhlVJSZixb9rZTKDJNk0IwQ0+OnCx8D7CMKXRKyYM9PrqbOvjIso4vp8eFwi9GBp1i1Q4Uvh8Ua3799TdAyl4Hh24Zmzdv3rhps6FrSoGUqnrCLGrYIMODlXLRIYVfPf5cqlEQgmla3im8++5yykqWbFwyz1ZjmpNNPf/Ci5SgAuCumxgxIV4/nhcdJOGxbBnWFN83EtU1k+dwX0gAU9feXf7e2rVrTNvqdXAopQjRnn76GSElpRSEJBo9aeYlSvCyriwnKBuE8GK++vTz7dr+0nOVAkLwT888y12nN+ZzCCGsWGzZm0tfevm1iGVIULzo1k2bFxt6qijkQ+NRUjRAcUGt6KAL/kEKqRQYhr57z76HHnpYN0t5wamkOaSI3Pdv//kvgvqASghqmvWLvnFMargpKYLyfkrwI9lLl3t8Sc0G8530kHnXxYacLNyiVMrUtd/cc++u7VtMy+yNyT6B8YjGE39+8cVnnnshFrGkAu44NRNmDjzvSi/TTGgPdmhQitlxnTEtFtc1huxwmQPlHl9CMijluXRy5KQh877IC64CNAx9+85dv/nN3YZV4nuRJb7UhIic85WrVv3D5z8XlBKQUlaMmpza+NdCUyM1zB74EDGobixFdtfGtg+WtW18L7XuHVHIfVi4uGfHl9bVkNxnkXjDV/5dT9ZIzqWUUdv8fzd/841XX47E4qW9FFn6u7KMsUxby+Jbb7t18XfS2TwlhJpmsWnHu7ct5E6WGlZPXKtHFIWc5H7QHYdZ0cN8ucs9vlTUK8UL2YYb7+o3dbaXcwRAImo/+8KfP33RxYZp9fYbb532o1hwnn76qTkXnBfwwSwrs2XVitu/yAtZqvcEH+2npkq1F5E63MyVe3xpyCjmR1/zbwPOXejnHIVo6FrT/v3Tp5+5r2lfOe5SlwUOQojvefFEfMkbr42oH57NOZSAFrHTm1atuP2L3MnSHjnLPp42rkpKUcyPuubfBp670Ms7CpBSolF67vlzl7zxeiyeKEcVhrLsMKWUumE0799/1VWfb21ttS1DKvBzTmJEw/ib72F2nDs5pCyc9SP0QCX3eScZOQeAIKJtGl++4aYlr70SL/UV2XI5pF1jYpZlb9m08bU3ll6y4O+j0YjPhfJ9q3Zg7aTzM5tX5HduZHY0nPvDkcF4Ls2iyXE33lU7fa6fdwAJIERt87ov3XDPr++MV9SUr7JPueAI7IcdjW7ZuL6TD8/nILiRqKmZeL6Xbs5sXomElDtDve8uJQDAc6nEyaeP/covK0ZN5HlHASJC1Lau+9INd//XHfGK2rLWFCx7NUFN09KtzVOmz3jm6SerKiuC+k+EMWpou155fNPDP+b5FIvE23sehIL2DiOimFNSDZp9df2im5FownWkAl3XTF277kvX3/1fd5abjPJajk77YUViWzZtfOHPL02dMnXYkEFO0UUA6fPkyPHVp59fbN6V37FeKUl081h2w+g164gSnOfS0cGjR1/7o0EXXBE08uFCxWORVCp99TXX/v53/x1L1gjR9+uQfhj8SKWqa2p/f/99c2Z/Kl9wgxY7VLeQ4r63/rT1iTty29cyO0Y048SsPImEKil4Pq0nagbNvXrQ7KupYXLHUYBKqXjU3rBx0+c+f83by96IV9ZxvycqnZTdcnTaD9O2HSf/+wceVABnnXmGbZtF1wMpJOeJ+jF1Uy9iZsTZs9lr24eEki65ysf/KkIoKMXzaaIZ/WYuGPWFH/SbcoH0hfQ8IZVpGLZlPPzIY5/57OUbNmxMVFT3DBnQw10TOmvjT5sx8xc/v33a1MmdJgSpxkyt2NK0+7XHdr/yaLF5JzVtopkHu3Z2fEARJOyIQo7Z8dqp8wadf1Vs6CjpK+EWFKICiEesHTt3f/Nb33n4wQcNO6Lrek92gOshy9G5v1UAViS2ecuWBx58mAsxc+aMqG25PldSSM9ndrRq7LTaafOZHS807fBSTZJ7hOlIg7up6viAAglFQOE6opjXIvG6GZ8edfX3B563SItW84IjBVcAkYht6dpDjzx++WVXLF3yRixZiYg93JLn2HRq6mjglRo3YeL3v3/bRfPmCAW5vBPcOya6QXXqpVMtK1/bu+yPqfV/EU6W6CbRTUTSV9uvtLfhUdL3hOsg0+NDx9ROmVczeY5dN0ByEK6jAKRUpmkaGl256oNbvrv46T/+STMNy7KOSTOvY9bjLejklcvmpBTz51/4g+/fNq5hbIAIgiKIhGrU1JSAzLbVTW8/3br6zfyujdItEt0IKGm3RL3ade3SD5C7wi0goVbt4OSoqbVT5lSMnkYNXXhS+sWgE2CAxe69+370o5/ce+9vnbwTSySUUseqU+Qx7g4ZXL/JZdLRWOwzixZef8NXJoxrAIBsviClJAhIKDVMQoEXitmtH7SseLll1dL87k3SKyCh7a0hEaH3NPkKGkQCAigpuPRcJXykmlkzsHL0tKoJ5yRGTjYSSaVAFF0l2vu6RSI2Rdi1e+/d99x799337t653Y4mKKPHtsdsr+gr27nKxBIVF1988WWXfWbO7PMRoOD6nudhcJZAKTUMJMCdQm7n+tSG5W2rl+Z3bXJTTcp3kTJkOtH0zvJtKmgu3AOHpdDRXTYwZdyT3FOCI6FarNLuNyx5yqSKMdOjg8cYyQoAEK4vuR+YCsZYxDIA4L0VKx9+6JGHH31sZ+OWoCnkMe8bCr2nIzUCUMZ83y/kMki12bPPv/yyz86ZM6emuhK6th4GQKpRQ0cCSoCb2p/fuSG96b3stlXO3m2F5p3Kd5UQSFn7g9D2Cirt7qw6oAv1kSQwfpgd3XkdJHg1FfS4V1Iq7ikpAAmhTE/W2icNjw4cmRg5MTp4tFk14MOm1L6nQHVtN1wouq+99vpDDz/6xJNPZlPNuhXvJVj0Ljg6J4JSJqXMZTKg5LARIy5dsGD+RfNmTJ/OKAoFruv5vo+gEBEJIUwjGmtvZJ/NOHu2uK17s9vXOrs2FFp2e+lm7mSkV1RCKFBIKCK2968HAKWAEBI0nj8IsEoIJUVAQ2dfeyW4AiCUIWVaNMnshFkzwO43LDZkjFk9wK4bplfUBklhXdrZKwWB7TOCdvYfrF77zLPPPvbY/7733nuSe1Y0rmla78GiN8LRdaEBgGKx6BdzVLfPmDF9/vwLL7jg/Prh9dGIBQBFj3uep5TE9lWeEMqIrgWrilLAnYIo5ootu/xsKrdjnZIiv2tjwIqzr7E9xuC7fq6t+1ILCCAls2PUioJSSgijok5PVAGS2JCxSDDS/2QtXmnVDKamrUXj7e8rQXIhuQdSSqUUACJhjFmmjgA+l9saG994442nn376pZdezaSakVmRiE0ICiF6oWPdS+HouqMRQuRzOZB+JJ6sHz589uzZ5503a8KE0+pqKoNVoej6vs8DhzTo5oFIkFIklFAKBBABAaQCUCA597NtQR0vXsgXmrYjId24JohKCD1ZaySrlVSgJLVjQc9bJO1rVIACSClF8O4glQIAJIQxZhg6RQCAXL6watWqJUvffOqpP32wenVb834AsKIxTdOklLIXh/h6NRxdNzWEEJ9zt1iUfhGINmz48EkTT58+fdrUKZNHjR5VmUwEI4UC3+e+7ysplVKIQZ0ChI5DcCSIVAucDyQE2aHSnZQAJTggAGD7EoOgpOx0XBQEL0wYY4yxYMkIgNi0edPyd5cvW/bWu8uXr1m7zi86QDTTsoIqJh2WpXeHZvoEHB+hREpZdF1eLABIzbCHDht6ysiRDeMaJoxrOGXUqH796qqrq2mXtcLjUkoZlM5V6oB4/JGHXZEEbYJB0xghRNe6vgO0pjLNzc3rN2xYtXLV+ytWrF+3YcuWzblMGgCIZliWRSkNgFB950yxj8FxQAyaEEQUQriuy10XgAPQaCJZWVkxfNiw4fX19cOHjRs3zrKsk08+Wdf12tqqo0yKVAAI0Nya8j1v89at+Wxu/YYNmzdtXrd+/bbGxv1N+9va2kB6AJRoumGYjNEAR9k3j4f6KhwHmBNEJCS4JcA555z7rgeKA0ggOhJaW1utafqoU04BgGRFclzDWCGl5KKisqJh7FjR3cwppRiljdu3N27bRhijhGxr3N64bauuGxs3bc7lsm1tKbdQBMUBFACjhq4xxhgLyvgF9qmvHwUdD3B8xKJ0Bl47T6p835dS+q7bvqMA0WEICFC93SB0ayUEB+Ad/0wAKSjFDIMQomla0DYBEFV7fQ5Qx1cayvEGx2GJ6RrMAjjM1xvbY+GdIVcIfMmufz2OdULcDwgmUoQ3Zf7W9Tr8CEKFcIQK4QgVwhEqhCNUCEeoEI5QIRyhQjhChXCECuEIFSqEI1QIR6gQjlBl1PFzZI8dgo4z+r6VsBnCUQbTRwghRAjheR7nXAkZ5JtTxjRNO1iq99/UIu/jkB366QGjHbmCMoTj2JgKQkg+n5d+UTMj/frV1dXVxWIxxpjrui0tLbt372lraQElDDvKGOs6wfl8PugnfSRoaLqu6Tp0yQRz8vnunxtcV5BBJiJS3bQsCzqSx0I4ekiUUs913YLTMOG0hZcuOGfWOfXD6xOJuGkaBIELlXfyTXv3vb9i5XPPP//sM8+1trUFVkQIYVnWPXf/urauzvc9PGRnYSFExDYffPjR3979GzuWlFIWC4WGcQ0/++lPfO5//LkKlO/7mXRm9549a9euffvtd9Z8sIbpmmlaUooQjp4hg+Wymdramn/5xe1XXnl5LGIrAM8XnPNcLq+UQkSNacOGDx95cv2iS/9+a+OO+Rf93fr1G2zb5pwzxmbNOqdfbfVh30gooAh/Wf5XIfxgsRCcJ5PJ82addSS/Zzqbe/65F2757uItW7fYdqTP2Q/WF21GNpOeMGH8ww89MOqUk/MFN53NB2u8pmmxWCRwB7gE13WzngdKDR0yqKqqSnQUx1FKZTLZZDLpum6nA9tthinnPBGL5POFD/PTETnn7bUhOlaWwO/pXHR83w/u1DCmLVq4YPLkSRfMnrt9+3a9pLXr2y8JBxczy+N49zE4CCGOkx81etTTTz3Zv3+/VCanaRqlFBEjlpHO5tesWdPWlqKUVldXDR48uDIRkwBOwfV9v6uXQCmhlAZPDKgytIN2S4nFol3vxQU3eIPnAgAiFItuoVBARKXAtq2KRMwpuMETWlOZYUMHf+/W7115+RWGWbLyaxRRKJXnPLhCYVMa/OTEhQMRpZCmbvz23nsG9O+XyuR0XZdSMkZBqR//9Oe/+939jY3bC8UiIolE7AED+p9z1llXXHn5zBnTdE3vtpCLUsrQta2N239//wOMMXXg5Ugppanrry9Zqhl2t196znk8Gvn1b+657V8Wx5JVQgjLNK686spvffPrQkgA0HW96PFzZ50zYNDg/fv3a6VowUwRsz63GZ2ZTEQZy3H+12wu6/OYxkrLR1+Cg1KayTTfeNPXpk+dlMrmg1vqhCD3/Suv+ocn//A4M6K6rkciEQDFOd+4cdO61avu/e19V155RTqTppR+fGKklBqjjY2N379tMQDp7uasQmbZti2l7HYHiwiFQiGVavUECCGEELcuvuX00067aP7cbM4JqgQkEomBAwbs3rVb1/WjhIMgZn3/in513xo2aGzEBiSg5Ad550dbdzy4d19U02Tp+OhLcPi+H0tUfuEL13AhKSHB1EZt+2tf//aTf3g8WdWPc95Z1IAQYlkWiUQ45/fd+1vDtk3LOtjE6LpuxypNs/vuecGFuUNTSwjTdZ1zHolEMq3e6jVrPj1/bmcsjlJKGVVHXSqTIOY4//LA/neOOQWkVFIqxRFxbCTywLgxCUbv2rUnylip+OgzcBBCctnsObNmjR59StH1grv2tmWuXrvh7rvvsWOVvu93ndquMahYMinbKzLgwbBzsq1OzvjY0qOAEDsSOcymRggpued5QohisciFN2b0aAUQODSU0mw2u3vPnqNcUyhinvPZlRV3jhkpOAelaEdEWAgBUt45ZuTmQvHF1rYIK8360pfgAOlPnjxJo8QRgjEmpWSUPPvss7l0a7yi+hCVOg9x1w0RhZQVFRWzPjVH1/QDvtwKCMFi0X13+XIhxMHAUgosy0omK9t9DsO4/MorZs8+3ym4lFLOedQ2n/zjy41btkbj8aO5dacAFMDNgwYEl3JZV/8akSulFNw8aMALrW2lWlf6DBxKKQBy8oh66LjsGvz3vffeRyCf+BtJCCm6/pjRo19+8dmPXKiWAARg15594ydMzOVyjHXzWTHGCq77+c9dtWjhpQfsVoouAEipopHIqtVrb/nOdzX9qMwGAnhS1hnGxHgUpaQfI5UiopQT49E6w2j1fQ1RnThwAChAUlVV1XVehYK9+/YpPNqzZSFEJud3s5ExjFwudzhqwTRN0zQ7Pdx0Nh8YNtPQlyxdeskli1r274tXVvtdQiOfzHIwRHbIVwgGlMpykL5jOQAQ2YHdFIRUQQDjaLcAhBjdSme6rh9+zhizTT14RG3TskwhBCHE8/m4cQ0PPfT70WMbctnM0XSZD8hIc77f82V3068AJOJ+z09zXio++ozlQERQqlgsdv1mM4KWZcHBPc0je2XgnLe1pT7yGkop3TDaUqlDkBfUeNm6ddvmzZsY05RSmq6NqK8fPLB/vuACgK4bF3zq3Cf+8L/nnvup5uYWTdc/cZBUQ8x4/qNNzd85eZhX5PqB+2oupa5rjzY1Zz0/rmv8hHJIEQGU2Ld3X7sVAVBKEYRBgwahEp8YDSFELGK/sXzZggWXGsZHt7IIIKV0XTeIkXwcQSFE1DYfe/zxxbd8ixlRzjmltCKZ/Pa3v/nVG693CkVCSFs6O3LE8K/d/LWbb7pJN4xPvvYpZWns5zt2zamqOD2Z8H2fdHGPdF3/a2vq5zt2WaULhfWhTDAEUOvWr+8wou0ZPdOnTVUAcNSWo6W55eNqbmlpbUsdds3SdZ0QFo1Go9GoZVnpdPqfvv7Nv76/wrZMKSVjmi/k3Dmz4xVVnPNPbOQUAEXMcD73/Q+WtaU0XaMao4xRjWm6tqwtNff9DzKc09L5HH3GckgpCTPeeuttp+gGGwdKqevzuXPn9B80pLm5WT+IxSYd4bJDr1lBapA6SIj9sDsp2SEAsCORTFvqgw9WTz59glKKEORc1tTU1tXWbt22zTSMTzx5UimD0pQQF7y3amFdzd9VV8UZzXDxZHPL4/v2e0oZlJ6IEVIppWXbq1auePvtv5x91hm5fIFS6rpe/361ixd/9x+vvUbXq4M9QjCX7SmDiE4+LziPxmKH5kN16JP5Q8FRXOdbK8WTyWTXl6eUsAC+oBr3UfChIwqA+3btuW/33vZXU8piTEeUJT1b6UsJxkEX9F/9xx2kwzJTSrP5wrVfvPq27//QyeUybS2FQsH3fc/zHMfJptqybS3Dhg759X/d1dAwtuA4f1N24JHLdV0h/HQ6nU2ns+l0qmXv6ZOnnHXmGQXXD96REJLL5dra2ro93/mb+QAgAHFNizEWpSTGWFzTCEDJs0X60tmKECIaTzz5hyfuf/CRz13x2bZ0Vtd1QojjFP/5lm/NnHnGvffet2LFirZUmlJaVVk5atQps2dfcOGFc2uqKu5/4MFyZDwEAdbhw4edffYsO5YQQhiGMa5h7HXXXReLxVzXI4QEQdKVK1c17d1rR6MlSelQAF32I+VKou5j+RxKKcMyb7zhxkEDB846e2Y6mw8SbTK5wqyzz5x19pnpbN5xHEQSjUaitgkATtELWvuU4/ehlBZdf9HChVde9hnV4TYDgOsL1/MRkXOuMaYA/v1X/6HgqLbcPa++BwdjWqFQXLDg0v/8zzs/u+gSocBxCkrJVCYHAJqmVVRUBJldbemsUkrX9VjE0rQDmqLzDkkpOed/05FHZynczpn2fT9/4JkfITRwMqK2yYX46k3/9OLzLxzl2UoIxxF5prphFIrFy6+48tlnn73ppq9OGN+A7YEgCFqWUEoMQyNgAkDOKTz51J+2bt2mG0anw1hdXWUZmmW0x1srKpJH6goopWlaEAw9rGewb9/+pUuW/vJXdyx9/fVoItHnckj7cO1zRMylU5F44uyzzjzvvHMbxjWcdNJJsWg0uJrQ2tq6ZcuWt9565+WXX1mxcqWu68FONbAlX/ziNYlEQnDxYSbY7x/4yPWFbt/U87whQwZ/7qqrhBDdJq4rpVzXa21tbWxsXLdu3fZtjUBILBbri1VQ+3YF4+BMvJDLA3CimbFYzDQNQgjnIp/PO9ksgCCaadt2122qUqqQywRXSzocOi0Sjx+J8UBE3/e9QgYAD7MNRKoZRpBAFBbGP2YmJEj1DryHAIKuOcDdNrz5yPn7wbLPDxHVOKxfAn2kqcrxDMdHpu3Iw5qhjkOH9LDf11ClUliCIVQIR6gQjlAhHKFCOEKFcIQK4QgVwhEqhCNUCEeoEI5QoUI4QoVwhArhCBXCESqEI1QIR6gQjlAhHKFCOEKFcIQK1an/D8ObC4ucoeGcAAAAAElFTkSuQmCC">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<meta name="color-scheme" content="dark">
+<title>CFB Scoreboard</title>
+<!-- cfb-scoreboard v3 · 2026-10-17 · v2 board unchanged on desktop + phone/touch layout (body.m) -->
+<!-- v2 · 2026-09-26 · conference filters, favorite conferences, upset watch -->
+<style>
+:root{
+  --bg:#0a0d12; --card:#141a23; --card2:#1a222d; --line:#27313d; --fg:#f4f6f8; --muted:#8f9cab; --dim:#56626f;
+  --live:#ff4b4b; --warn:#f2b640; --alert:#ff7a1a; --fav:#ffd166; --rz:#ff3b30; --ok:#41c76d; --panel:#0f141b; --btn:#1f2a36; --btn2:#2a3846;
+  --font:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);-webkit-font-smoothing:antialiased}
+body{display:flex;flex-direction:column;overflow:hidden}
+body.idle{cursor:none}
+button{font:inherit;color:inherit;cursor:pointer}
+body.demo #foot{background:rgba(242,182,64,.09);border-top-color:rgba(242,182,64,.5)}
+
+/* ---------- board ---------- */
+#board{flex:1;min-height:0;display:flex;flex-wrap:wrap;gap:1.2vmin;padding:1.2vmin;align-content:center;justify-content:center}
+#board.empty{display:flex;align-items:center;justify-content:center}
+.msg{max-width:60vw;text-align:center;color:var(--muted);font-size:2.4vmin;line-height:1.5}
+.msg b{color:var(--fg)}
+.msg .err{color:var(--warn)}
+.msg kbd{background:var(--btn);border:1px solid var(--line);border-radius:.4em;padding:0 .4em;color:var(--fg)}
+
+.card{position:relative;container-type:size;flex:0 0 auto;width:var(--cw,300px);height:var(--ch,190px);background:var(--card);border:1px solid var(--line);border-radius:1.2vmin;overflow:hidden;min-width:0;min-height:0}
+.card.fav{border-color:#3a4656}
+.card.rz{box-shadow:inset 0 0 0 .3vmin rgba(255,59,48,.55)}
+.card.close::after{content:'';position:absolute;left:0;top:0;bottom:0;width:.55vmin;background:var(--live);border-radius:1.2vmin 0 0 1.2vmin}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+.card.uw,.card.ua{overflow:visible}
+.card.uw::before,.card.ua::before{content:'';position:absolute;inset:-.35vmin;border-radius:calc(1.2vmin + .35vmin);padding:.35vmin;pointer-events:none;
+  background:conic-gradient(from var(--a),transparent 0 55%,var(--sw) 78%,transparent 92%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:sweep 2.6s linear infinite}
+.card.uw{--sw:var(--warn);box-shadow:0 0 2.2vmin rgba(242,182,64,.18)}
+.card.ua{--sw:var(--alert);box-shadow:0 0 2.6vmin rgba(255,122,26,.3)}
+.card.ua::before{animation-duration:1.6s}
+@keyframes sweep{to{--a:360deg}}
+.hd .st{flex:0 0 auto}
+.hd .hr{display:flex;align-items:center;gap:calc(var(--u)*2.5);min-width:0}
+.ctag{color:var(--dim);font-weight:700;letter-spacing:.08em;flex:0 0 auto}
+.badge{flex:0 0 auto;font-size:calc(var(--u)*6);font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:calc(var(--u)*1) calc(var(--u)*2.4);border-radius:calc(var(--u)*1.4);line-height:1.1}
+.badge.uw{background:rgba(242,182,64,.16);color:var(--warn);border:1px solid rgba(242,182,64,.6)}
+.badge.ua{background:rgba(255,122,26,.2);color:#ffb070;border:1px solid rgba(255,122,26,.75)}
+.badge.uf{background:rgba(255,255,255,.06);color:var(--muted);border:1px solid var(--line)}
+.c{--u:min(1cqh,.6cqw);height:100%;display:flex;flex-direction:column;padding:calc(var(--u)*3) calc(var(--u)*5)}
+.hd{flex:0 0 calc(var(--u)*13);display:flex;align-items:center;justify-content:space-between;gap:calc(var(--u)*3);
+    font-size:calc(var(--u)*7);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.card.live .hd .st{color:var(--live)}
+.card.warn .hd .st{color:var(--warn)}
+.card.final .hd .st{color:var(--dim)}
+.card.pre .hd .st{color:var(--fg);opacity:.85}
+.hd .net{color:var(--dim);font-weight:600;overflow:hidden;text-overflow:ellipsis}
+.dot{display:inline-block;width:calc(var(--u)*4.5);height:calc(var(--u)*4.5);border-radius:50%;background:var(--live);margin-right:calc(var(--u)*2.5);vertical-align:middle;position:relative;top:calc(var(--u)*-.5);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+.tm{flex:1 1 0;min-height:0;display:flex;align-items:center;gap:calc(var(--u)*3);border-radius:calc(var(--u)*2);padding:0 calc(var(--u)*2)}
+.tm.poss{background:rgba(255,255,255,.045)}
+.card.rz .tm.poss{background:rgba(255,59,48,.14)}
+.tm.loser{opacity:.5}
+.logo{flex:0 0 auto;width:calc(var(--u)*19);height:calc(var(--u)*19);object-fit:contain;display:block}
+.nm{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;justify-content:center;line-height:1.05}
+.name{font-size:calc(var(--u)*12.5);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.01em}
+.name.long{font-size:calc(var(--u)*10.5)}
+.rk{font-size:.62em;font-weight:600;color:var(--muted);margin-right:.35em;vertical-align:.12em}
+.sub{font-size:calc(var(--u)*5.8);color:var(--muted);white-space:nowrap;margin-top:calc(var(--u)*1.2);display:flex;align-items:center;gap:calc(var(--u)*3)}
+.to{display:inline-flex;gap:calc(var(--u)*1)}
+.to i{display:block;width:calc(var(--u)*3.2);height:calc(var(--u)*1.6);border-radius:1px;background:var(--fav)}
+.to i.u{background:var(--dim);opacity:.6}
+.ball{flex:0 0 auto;width:calc(var(--u)*9);height:calc(var(--u)*5.5);margin-right:calc(var(--u)*1)}
+.sc{flex:0 0 auto;min-width:calc(var(--u)*30);text-align:right;font-size:calc(var(--u)*23);font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1}
+.card.pre .sc{min-width:0}
+.ft{flex:0 0 calc(var(--u)*11);display:flex;align-items:center;justify-content:space-between;gap:calc(var(--u)*3);font-size:calc(var(--u)*6.5);color:var(--muted);white-space:nowrap}
+.ft .fl{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.card.live .ft .fl{color:var(--fg);opacity:.9}
+.ft .fr{color:var(--dim);flex:0 0 auto}
+.card.final.dimmed{opacity:.62}
+
+/* ---------- footer: status + ticker ---------- */
+#foot{flex:0 0 auto;display:flex;align-items:stretch;height:3.4vmin;min-height:22px;border-top:1px solid var(--line);background:#0c1016;font-size:1.55vmin;color:var(--muted)}
+#status{flex:0 0 auto;display:flex;align-items:center;gap:1vmin;padding:0 1.4vmin;white-space:nowrap;border-right:1px solid var(--line)}
+#status .demo{color:var(--warn);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+#status .err{color:var(--warn)}
+#ticker{flex:1 1 auto;min-width:0;overflow:hidden;position:relative;display:flex;align-items:center}
+#ticker[hidden]{display:none}
+.track{display:inline-flex;white-space:nowrap;will-change:transform}
+.track.roll{animation:roll var(--dur,60s) linear infinite}
+@keyframes roll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ti{display:inline-flex;align-items:center;gap:.6em;padding:0 1.6vmin;border-right:1px solid var(--line);color:var(--fg);font-variant-numeric:tabular-nums}
+.ti .k{color:var(--muted);font-size:.9em;text-transform:uppercase;letter-spacing:.04em}
+.ti.live .k{color:var(--live)}
+.ti .w{font-weight:700}
+.ti .l{opacity:.55}
+.ti .b{font-size:.78em;font-weight:800;letter-spacing:.08em;padding:.1em .5em;border-radius:.6em}
+.ti .b.uw{color:var(--warn);border:1px solid rgba(242,182,64,.6)}
+.ti .b.ua{color:#ffb070;border:1px solid rgba(255,122,26,.75)}
+.ti .b.uf{color:var(--muted);border:1px solid var(--line)}
+
+/* ---------- gear + panel ---------- */
+#gear{flex:0 0 auto;height:100%;aspect-ratio:1;border:0;border-left:1px solid var(--line);background:transparent;color:var(--muted);font-size:2.1vmin;display:flex;align-items:center;justify-content:center;padding:0}
+#gear:hover{color:var(--fg);background:var(--btn)}
+#panel{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);z-index:30;background:var(--panel);border-left:1px solid var(--line);display:flex;flex-direction:column;font-size:14px;color:var(--fg);box-shadow:-20px 0 60px rgba(0,0,0,.5)}
+#panel[hidden]{display:none}
+#panel header{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--line)}
+#panel nav{display:flex;gap:4px}
+#panel nav button{background:transparent;border:1px solid transparent;border-radius:8px;padding:6px 12px;color:var(--muted)}
+#panel nav button.on{background:var(--btn);color:var(--fg);border-color:var(--line)}
+#close{background:transparent;border:0;color:var(--muted);font-size:18px;padding:4px 8px}
+#panel section{flex:1;overflow:auto;padding:12px}
+#panel section[hidden]{display:none}
+.ph{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--muted);margin-bottom:10px;flex-wrap:wrap}
+.ph b{color:var(--fg)}
+.btn{background:var(--btn);border:1px solid var(--line);border-radius:8px;padding:6px 10px;color:var(--fg);font-size:13px}
+.btn:hover{background:var(--btn2)}
+.btn.sm{padding:3px 8px;font-size:12px}
+.btn.primary{background:#2b5cff;border-color:#2b5cff}
+h4{margin:16px 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h4:first-child{margin-top:0}
+.row{display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:8px;cursor:pointer}
+.row:hover{background:rgba(255,255,255,.04)}
+.row input{margin:0;width:16px;height:16px;flex:0 0 auto;accent-color:#2b5cff}
+.row .t{flex:0 0 74px;color:var(--muted);font-variant-numeric:tabular-nums;font-size:12px}
+.row .g{flex:1 1 auto;min-width:80px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .g .rk{font-size:11px;margin-right:2px}
+.row .s{flex:0 0 auto;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.row .s.live{color:var(--live);font-weight:600}
+.row .star{flex:0 0 30px;color:var(--fav);font-size:13px;text-align:center}
+.row.uw{box-shadow:inset 3px 0 0 var(--warn);background:rgba(242,182,64,.05)}
+.row.ua{box-shadow:inset 3px 0 0 var(--alert);background:rgba(255,122,26,.07)}
+.row.close{box-shadow:inset 3px 0 0 var(--live)}
+.row .b{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.06em;padding:1px 4px;border-radius:5px;white-space:nowrap}
+.row .b.uw{color:var(--warn);border:1px solid rgba(242,182,64,.6)}
+.row .b.ua{color:#ffb070;border:1px solid rgba(255,122,26,.75)}
+.row .b.uf{color:var(--muted);border:1px solid var(--line)}
+.row .cf{color:var(--dim);font-size:11px;font-weight:700;letter-spacing:.06em;margin-left:6px}
+.row .auto{flex:0 0 auto;font-size:10px;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:0 4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.chip{padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:12px;line-height:1.3}
+.chip.on{background:var(--btn);color:var(--fg);border-color:#4a5a6c}
+.chip.live.on{color:var(--live);border-color:rgba(255,75,75,.6)}
+.chip small{color:var(--dim);margin-left:4px}
+.tools{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:6px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:4px 10px;color:var(--muted);font-size:12px}
+.seg button.on{background:var(--btn);color:var(--fg)}
+.ord{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:8px}
+.ord .g{flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ord .btn{padding:2px 7px}
+.favrow{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03);margin-bottom:6px}
+.favrow img{width:26px;height:26px;object-fit:contain}
+.favrow .g{flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl{display:flex;align-items:center;gap:10px;padding:5px 8px;border-radius:8px}
+.tl:hover{background:rgba(255,255,255,.04)}
+.tl img{width:22px;height:22px;object-fit:contain}
+.tl .g{flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl .g small{color:var(--muted);margin-left:6px}
+input[type=text],input[type=search],select,textarea{background:#0a0e14;border:1px solid var(--line);border-radius:8px;color:var(--fg);padding:8px 10px;font:inherit;width:100%}
+textarea{min-height:90px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px}
+.set{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 4px;border-bottom:1px solid rgba(255,255,255,.05)}
+.set label{color:var(--fg)}
+.set small{display:block;color:var(--muted);margin-top:2px}
+.set select{width:auto;min-width:120px}
+.set input[type=checkbox]{width:18px;height:18px;accent-color:#2b5cff}
+.keys{color:var(--muted);font-size:12px;line-height:1.7;margin-top:14px}
+.keys kbd{background:var(--btn);border:1px solid var(--line);border-radius:5px;padding:0 6px;color:var(--fg);font-family:inherit}
+.note{color:var(--muted);font-size:12px;line-height:1.5;margin-top:10px}
+.muted{color:var(--muted)}
+/* ---------- v3: phone / touch layer — everything here is scoped to body.m ---------- */
+#mb{display:none}
+@supports (height:100dvh){body.m{height:100dvh}}
+body.m #board{gap:10px;padding:10px max(10px,env(safe-area-inset-right)) 10px max(10px,env(safe-area-inset-left));padding-top:max(10px,env(safe-area-inset-top));touch-action:manipulation}
+body.m #board.scroll{overflow-y:auto;align-content:flex-start;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+body.m .msg{font-size:15px;max-width:min(92vw,520px)}
+body.m .card{border-radius:12px}
+body.m .card.close::after{width:4px;border-radius:12px 0 0 12px}
+body.m .card.uw::before,body.m .card.ua::before{inset:-3px;padding:3px;border-radius:15px}
+body.m .card.rz{box-shadow:inset 0 0 0 2px rgba(255,59,48,.55)}
+body.m .card.uw{box-shadow:0 0 14px rgba(242,182,64,.18)}
+body.m .card.ua{box-shadow:0 0 16px rgba(255,122,26,.3)}
+body.m #foot{flex-wrap:wrap;height:auto;min-height:0;font-size:12px;padding:0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+body.m #ticker{order:-1;flex:0 0 100%;height:30px;border-bottom:1px solid var(--line);font-size:13px}
+body.m .ti{padding:0 12px}
+body.m #status{flex:1 1 0;min-width:0;overflow:hidden;border-right:0;padding:0 10px;gap:6px}
+body.m #status>span{white-space:nowrap}
+body.m #mb{display:flex;flex:0 0 auto}
+#mb button,body.m #gear{height:44px;min-width:44px;border:0;border-left:1px solid var(--line);background:transparent;color:var(--dim);font-size:13px;font-weight:600;padding:0 11px;-webkit-tap-highlight-color:transparent}
+#mb button[aria-pressed=true]{color:var(--fg)}
+#mb button[data-k=r]{font-size:19px;color:var(--muted)}
+#mb button[hidden]{display:none}
+body.m #gear{aspect-ratio:auto;width:48px;font-size:21px;color:var(--muted)}
+#mb button:active,body.m #gear:active{background:var(--btn)}
+body.m #panel{width:100vw;border-left:0;font-size:15px;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
+@supports (height:100dvh){body.m #panel{bottom:auto;height:100dvh}}
+body.m #panel header{padding:8px 10px}
+body.m #panel nav button{padding:9px 14px}
+body.m #close{font-size:22px;padding:8px 12px}
+body.m .btn{padding:9px 12px;font-size:14px}
+body.m .btn.sm{padding:7px 11px;font-size:13px}
+body.m .chips{gap:8px}
+body.m .chip{padding:7px 12px;font-size:13px}
+body.m .seg button{padding:8px 12px;font-size:13px}
+body.m input[type=text],body.m input[type=search],body.m select,body.m textarea{font-size:16px}
+body.m .set input[type=checkbox]{width:24px;height:24px}
+body.m .row{display:grid;grid-template-columns:22px auto 1fr 24px;grid-template-areas:"cb g g star" "cb t s star";column-gap:10px;row-gap:3px;padding:10px 8px}
+body.m .row input{grid-area:cb;width:20px;height:20px}
+body.m .row .t{grid-area:t;flex:none;font-size:12px}
+body.m .row .g{grid-area:g;min-width:0;font-size:15px}
+body.m .row .s{grid-area:s;text-align:right;font-size:12px}
+body.m .row .star{grid-area:star}
+body.m .ord,body.m .favrow,body.m .tl{padding:8px}
+body.m .ord .btn{padding:7px 12px}
+body.m .keys{display:none}
+@media (min-width:701px){body.m #foot{flex-wrap:nowrap}body.m #ticker{order:0;flex:1 1 auto;height:auto;border-bottom:0}body.m #status{flex:0 0 auto;border-right:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<main id="board" class="empty"><div class="msg">Loading…</div></main>
+<footer id="foot"><div id="status"></div><div id="ticker"><div class="track" id="track"></div></div><span id="mb"><button data-k="r" aria-label="Refresh now">&#8635;</button><button data-k="h" aria-label="Show or hide finished games">Finals</button><button data-k="t" aria-label="Show or hide the ticker">Ticker</button><button data-k="f" aria-label="Fullscreen">Full</button></span><button id="gear" title="Picks & settings (P)" aria-label="Open picks and settings">&#9881;</button></footer>
+<aside id="panel" hidden>
+  <header>
+    <nav><button data-tab="picks" class="on">Picks</button><button data-tab="teams">Teams</button><button data-tab="settings">Settings</button></nav>
+    <button id="close" aria-label="Close">&#10005;</button>
+  </header>
+  <section id="tab-picks"></section>
+  <section id="tab-teams" hidden></section>
+  <section id="tab-settings" hidden></section>
+</aside>
+
+<script type="application/json" id="demo-data">{"leagues":[{"id":"23","name":"NCAA - Football","abbreviation":"NCAAF","season":{"year":2026,"type":2}}],"season":{"type":2,"year":2026},"week":{"number":5},"events":[{"id":"401","uid":"s:20~l:23~e:401","date":"2026-09-26T19:30Z","name":"Stanford Cardinal at Oregon Ducks","shortName":"STAN @ ORE","competitions":[{"id":"401","date":"2026-09-26T19:30Z","neutralSite":false,"conferenceCompetition":false,"venue":{"fullName":"Autzen Stadium","address":{"city":"Eugene","state":"OR"}},"competitors":[{"id":"2483","uid":"s:20~l:23~t:2483","type":"team","order":0,"homeAway":"home","team":{"id":"2483","location":"Oregon","name":"Ducks","abbreviation":"ORE","displayName":"Oregon Ducks","shortDisplayName":"Oregon","color":"154733","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/2483.png","conferenceId":"5"},"score":"24","curatedRank":{"current":6},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}]},{"id":"24","uid":"s:20~l:23~t:24","type":"team","order":1,"homeAway":"away","team":{"id":"24","location":"Stanford","name":"Cardinal","abbreviation":"STAN","displayName":"Stanford Cardinal","shortDisplayName":"Stanford","color":"8C1515","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/24.png","conferenceId":"1"},"score":"17","curatedRank":{"current":99},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"2-2"}]}],"status":{"clock":0.0,"displayClock":"6:12","period":4,"type":{"id":"1","name":"STATUS_IN_PROGRESS","state":"in","completed":false,"description":"6:12 - 4th Quarter","detail":"6:12 - 4th Quarter","shortDetail":"6:12 - 4th"}},"broadcasts":[{"market":"national","names":["FOX"]}],"situation":{"down":2,"distance":7,"yardLine":35,"downDistanceText":"2nd & 7 at ORE 35","shortDownDistanceText":"2nd & 7","possessionText":"ORE 35","isRedZone":false,"homeTimeouts":2,"awayTimeouts":3,"possession":"24","lastPlay":{"text":"Pass complete for 9 yards"}},"odds":[{"provider":{"id":"58","name":"ESPN BET","priority":1},"details":"ORE -10.5","overUnder":52.5,"spread":-10.5,"awayTeamOdds":{"favorite":false,"underdog":true,"team":{"id":"24"}},"homeTeamOdds":{"favorite":true,"underdog":false,"team":{"id":"2483"}}}]}],"status":{"clock":0.0,"displayClock":"6:12","period":4,"type":{"id":"1","name":"STATUS_IN_PROGRESS","state":"in","completed":false,"description":"6:12 - 4th Quarter","detail":"6:12 - 4th Quarter","shortDetail":"6:12 - 4th"}}},{"id":"402","uid":"s:20~l:23~e:402","date":"2026-09-26T22:30Z","name":"California Golden Bears at USC Trojans","shortName":"CAL @ USC","competitions":[{"id":"402","date":"2026-09-26T22:30Z","neutralSite":false,"conferenceCompetition":false,"venue":{"fullName":"Los Angeles Memorial Coliseum","address":{"city":"Los Angeles","state":"CA"}},"competitors":[{"id":"30","uid":"s:20~l:23~t:30","type":"team","order":0,"homeAway":"home","team":{"id":"30","location":"USC","name":"Trojans","abbreviation":"USC","displayName":"USC Trojans","shortDisplayName":"USC","color":"990000","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/30.png","conferenceId":"5"},"score":"7","curatedRank":{"current":18},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}]},{"id":"25","uid":"s:20~l:23~t:25","type":"team","order":1,"homeAway":"away","team":{"id":"25","location":"California","name":"Golden Bears","abbreviation":"CAL","displayName":"California Golden Bears","shortDisplayName":"California","color":"003262","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/25.png","conferenceId":"1"},"score":"7","curatedRank":{"current":99},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}]}],"status":{"clock":0.0,"displayClock":"0:00","period":2,"type":{"id":"1","name":"STATUS_HALFTIME","state":"in","completed":false,"description":"Halftime","detail":"Halftime","shortDetail":"Halftime"}},"broadcasts":[{"market":"national","names":["ESPN"]}],"odds":[{"provider":{"id":"58","name":"ESPN BET","priority":1},"details":"USC -13.5","overUnder":55.5,"spread":-13.5,"awayTeamOdds":{"favorite":false,"underdog":true,"team":{"id":"25"}},"homeTeamOdds":{"favorite":true,"underdog":false,"team":{"id":"30"}}}]}],"status":{"clock":0.0,"displayClock":"0:00","period":2,"type":{"id":"1","name":"STATUS_HALFTIME","state":"in","completed":false,"description":"Halftime","detail":"Halftime","shortDetail":"Halftime"}}},{"id":"403","uid":"s:20~l:23~e:403","date":"2026-09-26T19:30Z","name":"Oklahoma Sooners at Texas Longhorns","shortName":"OU @ TEX","competitions":[{"id":"403","date":"2026-09-26T19:30Z","neutralSite":true,"conferenceCompetition":true,"venue":{"fullName":"Cotton Bowl","address":{"city":"Dallas","state":"TX"}},"competitors":[{"id":"251","uid":"s:20~l:23~t:251","type":"team","order":0,"homeAway":"home","team":{"id":"251","location":"Texas","name":"Longhorns","abbreviation":"TEX","displayName":"Texas Longhorns","shortDisplayName":"Texas","color":"BF5700","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/251.png","conferenceId":"8"},"score":"24","curatedRank":{"current":4},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}]},{"id":"201","uid":"s:20~l:23~t:201","type":"team","order":1,"homeAway":"away","team":{"id":"201","location":"Oklahoma","name":"Sooners","abbreviation":"OU","displayName":"Oklahoma Sooners","shortDisplayName":"Oklahoma","color":"841617","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/201.png","conferenceId":"8"},"score":"21","curatedRank":{"current":12},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}]}],"status":{"clock":0.0,"displayClock":"2:20","period":4,"type":{"id":"1","name":"STATUS_IN_PROGRESS","state":"in","completed":false,"description":"2:20 - 4th Quarter","detail":"2:20 - 4th Quarter","shortDetail":"2:20 - 4th"}},"broadcasts":[{"market":"national","names":["ABC"]}],"situation":{"down":3,"distance":4,"yardLine":61,"downDistanceText":"3rd & 4 at TEX 39","shortDownDistanceText":"3rd & 4","possessionText":"TEX 39","isRedZone":false,"homeTimeouts":1,"awayTimeouts":2,"possession":"201"},"odds":[{"provider":{"id":"58","name":"ESPN BET","priority":1},"details":"TEX -3.5","overUnder":49.5,"spread":-3.5,"awayTeamOdds":{"favorite":false,"underdog":true,"team":{"id":"201"}},"homeTeamOdds":{"favorite":true,"underdog":false,"team":{"id":"251"}}}]}],"status":{"clock":0.0,"displayClock":"2:20","period":4,"type":{"id":"1","name":"STATUS_IN_PROGRESS","state":"in","completed":false,"description":"2:20 - 4th Quarter","detail":"2:20 - 4th Quarter","shortDetail":"2:20 - 4th"}}},{"id":"404","uid":"s:20~l:23~e:404","date":"2026-09-26T16:00Z","name":"Georgia Bulldogs at Alabama Crimson Tide","shortName":"UGA @ ALA","competitions":[{"id":"404","date":"2026-09-26T16:00Z","neutralSite":false,"conferenceCompetition":true,"venue":{"fullName":"Stadium","address":{"city":"City","state":"ST"}},"competitors":[{"id":"333","uid":"s:20~l:23~t:333","type":"team","order":0,"homeAway":"home","team":{"id":"333","location":"Alabama","name":"Crimson Tide","abbreviation":"ALA","displayName":"Alabama Crimson Tide","shortDisplayName":"Alabama","color":"9E1B32","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/333.png","conferenceId":"8"},"score":"27","curatedRank":{"current":8},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}],"winner":true},{"id":"61","uid":"s:20~l:23~t:61","type":"team","order":1,"homeAway":"away","team":{"id":"61","location":"Georgia","name":"Bulldogs","abbreviation":"UGA","displayName":"Georgia Bulldogs","shortDisplayName":"Georgia","color":"BA0C2F","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/61.png","conferenceId":"8"},"score":"24","curatedRank":{"current":3},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}],"winner":false}],"status":{"clock":0.0,"displayClock":"0:00","period":4,"type":{"id":"1","name":"STATUS_FINAL","state":"post","completed":true,"description":"Final","detail":"Final","shortDetail":"Final"}},"broadcasts":[{"market":"national","names":["CBS"]}],"odds":[{"provider":{"id":"58","name":"ESPN BET","priority":1},"details":"UGA -2.5","overUnder":48.5,"spread":2.5,"awayTeamOdds":{"favorite":true,"underdog":false,"team":{"id":"61"}},"homeTeamOdds":{"favorite":false,"underdog":true,"team":{"id":"333"}}}]}],"status":{"clock":0.0,"displayClock":"0:00","period":4,"type":{"id":"1","name":"STATUS_FINAL","state":"post","completed":true,"description":"Final","detail":"Final","shortDetail":"Final"}}},{"id":"405","uid":"s:20~l:23~e:405","date":"2026-09-26T23:30Z","name":"Michigan Wolverines at Ohio State Buckeyes","shortName":"MICH @ OSU","competitions":[{"id":"405","date":"2026-09-26T23:30Z","neutralSite":false,"conferenceCompetition":true,"venue":{"fullName":"Ohio Stadium","address":{"city":"Columbus","state":"OH"}},"competitors":[{"id":"194","uid":"s:20~l:23~t:194","type":"team","order":0,"homeAway":"home","team":{"id":"194","location":"Ohio State","name":"Buckeyes","abbreviation":"OSU","displayName":"Ohio State Buckeyes","shortDisplayName":"Ohio State","color":"BB0000","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/194.png","conferenceId":"5"},"score":"0","curatedRank":{"current":2},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"4-0"}]},{"id":"130","uid":"s:20~l:23~t:130","type":"team","order":1,"homeAway":"away","team":{"id":"130","location":"Michigan","name":"Wolverines","abbreviation":"MICH","displayName":"Michigan Wolverines","shortDisplayName":"Michigan","color":"00274C","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/130.png","conferenceId":"5"},"score":"0","curatedRank":{"current":9},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"4-0"}]}],"status":{"clock":0.0,"displayClock":"0:00","period":0,"type":{"id":"1","name":"STATUS_SCHEDULED","state":"pre","completed":false,"description":"Sat, September 26th at 7:30 PM EDT","detail":"Sat, September 26th at 7:30 PM EDT","shortDetail":"9/26 - 7:30 PM EDT"}},"broadcasts":[{"market":"national","names":["FOX"]}],"odds":[{"provider":{"id":"58","name":"ESPN BET","priority":1},"details":"OSU -8.5","overUnder":51.5,"spread":-8.5,"awayTeamOdds":{"favorite":false,"underdog":true,"team":{"id":"130"}},"homeTeamOdds":{"favorite":true,"underdog":false,"team":{"id":"194"}}}]}],"status":{"clock":0.0,"displayClock":"0:00","period":0,"type":{"id":"1","name":"STATUS_SCHEDULED","state":"pre","completed":false,"description":"Sat, September 26th at 7:30 PM EDT","detail":"Sat, September 26th at 7:30 PM EDT","shortDetail":"9/26 - 7:30 PM EDT"}}},{"id":"406","uid":"s:20~l:23~e:406","date":"2026-09-26T16:00Z","name":"Notre Dame Fighting Irish at Penn State Nittany Lions","shortName":"ND @ PSU","competitions":[{"id":"406","date":"2026-09-26T16:00Z","neutralSite":false,"conferenceCompetition":false,"venue":{"fullName":"Stadium","address":{"city":"City","state":"ST"}},"competitors":[{"id":"213","uid":"s:20~l:23~t:213","type":"team","order":0,"homeAway":"home","team":{"id":"213","location":"Penn State","name":"Nittany Lions","abbreviation":"PSU","displayName":"Penn State Nittany Lions","shortDisplayName":"Penn State","color":"041E42","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/213.png","conferenceId":"5"},"score":"28","curatedRank":{"current":5},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}],"winner":false},{"id":"87","uid":"s:20~l:23~t:87","type":"team","order":1,"homeAway":"away","team":{"id":"87","location":"Notre Dame","name":"Fighting Irish","abbreviation":"ND","displayName":"Notre Dame Fighting Irish","shortDisplayName":"Notre Dame","color":"0C2340","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/87.png","conferenceId":"18"},"score":"31","curatedRank":{"current":11},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}],"winner":true}],"status":{"clock":0.0,"displayClock":"0:00","period":5,"type":{"id":"1","name":"STATUS_FINAL","state":"post","completed":true,"description":"Final/OT","detail":"Final/OT","shortDetail":"Final/OT"}},"broadcasts":[{"market":"national","names":["NBC"]}],"odds":[{"provider":{"id":"58","name":"ESPN BET","priority":1},"details":"PSU -7.5","overUnder":47.5,"spread":-7.5,"awayTeamOdds":{"favorite":false,"underdog":true,"team":{"id":"87"}},"homeTeamOdds":{"favorite":true,"underdog":false,"team":{"id":"213"}}}]}],"status":{"clock":0.0,"displayClock":"0:00","period":5,"type":{"id":"1","name":"STATUS_FINAL","state":"post","completed":true,"description":"Final/OT","detail":"Final/OT","shortDetail":"Final/OT"}}},{"id":"407","uid":"s:20~l:23~e:407","date":"2026-09-26T19:30Z","name":"LSU Tigers at Tennessee Volunteers","shortName":"LSU @ TENN","competitions":[{"id":"407","date":"2026-09-26T19:30Z","neutralSite":false,"conferenceCompetition":true,"venue":{"fullName":"Stadium","address":{"city":"City","state":"ST"}},"competitors":[{"id":"2633","uid":"s:20~l:23~t:2633","type":"team","order":0,"homeAway":"home","team":{"id":"2633","location":"Tennessee","name":"Volunteers","abbreviation":"TENN","displayName":"Tennessee Volunteers","shortDisplayName":"Tennessee","color":"FF8200","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/2633.png","conferenceId":"8"},"score":"38","curatedRank":{"current":20},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}]},{"id":"99","uid":"s:20~l:23~t:99","type":"team","order":1,"homeAway":"away","team":{"id":"99","location":"LSU","name":"Tigers","abbreviation":"LSU","displayName":"LSU Tigers","shortDisplayName":"LSU","color":"461D7C","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/99.png","conferenceId":"8"},"score":"35","curatedRank":{"current":14},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}]}],"status":{"clock":0.0,"displayClock":"0:58","period":4,"type":{"id":"1","name":"STATUS_IN_PROGRESS","state":"in","completed":false,"description":"0:58 - 4th Quarter","detail":"0:58 - 4th Quarter","shortDetail":"0:58 - 4th"}},"broadcasts":[{"market":"national","names":["ESPN"]}],"situation":{"down":4,"distance":2,"yardLine":56,"downDistanceText":"4th & 2 at TENN 44","shortDownDistanceText":"4th & 2","possessionText":"TENN 44","isRedZone":false,"homeTimeouts":1,"awayTimeouts":0,"possession":"99"},"odds":[{"provider":{"id":"58","name":"ESPN BET","priority":1},"details":"LSU -7.5","overUnder":58.5,"spread":7.5,"awayTeamOdds":{"favorite":true,"underdog":false,"team":{"id":"99"}},"homeTeamOdds":{"favorite":false,"underdog":true,"team":{"id":"2633"}}}]}],"status":{"clock":0.0,"displayClock":"0:58","period":4,"type":{"id":"1","name":"STATUS_IN_PROGRESS","state":"in","completed":false,"description":"0:58 - 4th Quarter","detail":"0:58 - 4th Quarter","shortDetail":"0:58 - 4th"}}},{"id":"408","uid":"s:20~l:23~e:408","date":"2026-09-27T02:30Z","name":"Oregon State Beavers at Utah Utes","shortName":"ORST @ UTAH","competitions":[{"id":"408","date":"2026-09-27T02:30Z","neutralSite":false,"conferenceCompetition":false,"venue":{"fullName":"Stadium","address":{"city":"City","state":"ST"}},"competitors":[{"id":"254","uid":"s:20~l:23~t:254","type":"team","order":0,"homeAway":"home","team":{"id":"254","location":"Utah","name":"Utes","abbreviation":"UTAH","displayName":"Utah Utes","shortDisplayName":"Utah","color":"CC0000","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/254.png","conferenceId":"4"},"score":"0","curatedRank":{"current":99},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}]},{"id":"204","uid":"s:20~l:23~t:204","type":"team","order":1,"homeAway":"away","team":{"id":"204","location":"Oregon State","name":"Beavers","abbreviation":"ORST","displayName":"Oregon State Beavers","shortDisplayName":"Oregon State","color":"DC4405","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/204.png","conferenceId":"9"},"score":"0","curatedRank":{"current":99},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"2-2"}]}],"status":{"clock":0.0,"displayClock":"0:00","period":0,"type":{"id":"1","name":"STATUS_SCHEDULED","state":"pre","completed":false,"description":"Sat, September 26th at 10:30 PM EDT","detail":"Sat, September 26th at 10:30 PM EDT","shortDetail":"9/26 - 10:30 PM EDT"}},"broadcasts":[{"market":"national","names":["FS1"]}],"odds":[{"provider":{"id":"58","name":"ESPN BET","priority":1},"details":"UTAH -6.5","overUnder":47.5,"spread":-6.5,"awayTeamOdds":{"favorite":false,"underdog":true,"team":{"id":"204"}},"homeTeamOdds":{"favorite":true,"underdog":false,"team":{"id":"254"}}}]}],"status":{"clock":0.0,"displayClock":"0:00","period":0,"type":{"id":"1","name":"STATUS_SCHEDULED","state":"pre","completed":false,"description":"Sat, September 26th at 10:30 PM EDT","detail":"Sat, September 26th at 10:30 PM EDT","shortDetail":"9/26 - 10:30 PM EDT"}}},{"id":"409","uid":"s:20~l:23~e:409","date":"2026-09-26T19:30Z","name":"UCLA Bruins at Washington Huskies","shortName":"UCLA @ WASH","competitions":[{"id":"409","date":"2026-09-26T19:30Z","neutralSite":false,"conferenceCompetition":true,"venue":{"fullName":"Stadium","address":{"city":"City","state":"ST"}},"competitors":[{"id":"264","uid":"s:20~l:23~t:264","type":"team","order":0,"homeAway":"home","team":{"id":"264","location":"Washington","name":"Huskies","abbreviation":"WASH","displayName":"Washington Huskies","shortDisplayName":"Washington","color":"4B2E83","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/264.png","conferenceId":"5"},"score":"14","curatedRank":{"current":99},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}]},{"id":"26","uid":"s:20~l:23~t:26","type":"team","order":1,"homeAway":"away","team":{"id":"26","location":"UCLA","name":"Bruins","abbreviation":"UCLA","displayName":"UCLA Bruins","shortDisplayName":"UCLA","color":"2D68C4","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/26.png","conferenceId":"5"},"score":"3","curatedRank":{"current":99},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"1-3"}]}],"status":{"clock":0.0,"displayClock":"11:20","period":2,"type":{"id":"1","name":"STATUS_IN_PROGRESS","state":"in","completed":false,"description":"11:20 - 2nd Quarter","detail":"11:20 - 2nd Quarter","shortDetail":"11:20 - 2nd"}},"broadcasts":[{"market":"national","names":["BTN"]}],"situation":{"down":3,"distance":12,"yardLine":22,"downDistanceText":"3rd & 12 at UCLA 22","shortDownDistanceText":"3rd & 12","possessionText":"UCLA 22","isRedZone":false,"homeTimeouts":3,"awayTimeouts":2,"possession":"26"},"odds":[{"provider":{"id":"58","name":"ESPN BET","priority":1},"details":"WASH -10","overUnder":44.5,"spread":-10,"awayTeamOdds":{"favorite":false,"underdog":true,"team":{"id":"26"}},"homeTeamOdds":{"favorite":true,"underdog":false,"team":{"id":"264"}}}]}],"status":{"clock":0.0,"displayClock":"11:20","period":2,"type":{"id":"1","name":"STATUS_IN_PROGRESS","state":"in","completed":false,"description":"11:20 - 2nd Quarter","detail":"11:20 - 2nd Quarter","shortDetail":"11:20 - 2nd"}}},{"id":"410","uid":"s:20~l:23~e:410","date":"2026-09-27T02:00Z","name":"Boise State Broncos at San Jos\u00e9 State Spartans","shortName":"BSU @ SJSU","competitions":[{"id":"410","date":"2026-09-27T02:00Z","neutralSite":false,"conferenceCompetition":false,"venue":{"fullName":"Stadium","address":{"city":"City","state":"ST"}},"competitors":[{"id":"23","uid":"s:20~l:23~t:23","type":"team","order":0,"homeAway":"home","team":{"id":"23","location":"San Jos\u00e9 State","name":"Spartans","abbreviation":"SJSU","displayName":"San Jos\u00e9 State Spartans","shortDisplayName":"San Jos\u00e9 State","color":"0055A2","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/23.png","conferenceId":"17"},"score":"0","curatedRank":{"current":99},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"2-2"}]},{"id":"68","uid":"s:20~l:23~t:68","type":"team","order":1,"homeAway":"away","team":{"id":"68","location":"Boise State","name":"Broncos","abbreviation":"BSU","displayName":"Boise State Broncos","shortDisplayName":"Boise State","color":"0033A0","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/68.png","conferenceId":"9"},"score":"0","curatedRank":{"current":23},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}]}],"status":{"clock":0.0,"displayClock":"0:00","period":0,"type":{"id":"1","name":"STATUS_SCHEDULED","state":"pre","completed":false,"description":"Sat, September 26th at 10:00 PM EDT","detail":"Sat, September 26th at 10:00 PM EDT","shortDetail":"9/26 - 10:00 PM EDT"}},"broadcasts":[{"market":"national","names":["CBSSN"]}],"odds":[{"provider":{"id":"58","name":"ESPN BET","priority":1},"details":"BSU -9.5","overUnder":50.5,"spread":9.5,"awayTeamOdds":{"favorite":true,"underdog":false,"team":{"id":"68"}},"homeTeamOdds":{"favorite":false,"underdog":true,"team":{"id":"23"}}}]}],"status":{"clock":0.0,"displayClock":"0:00","period":0,"type":{"id":"1","name":"STATUS_SCHEDULED","state":"pre","completed":false,"description":"Sat, September 26th at 10:00 PM EDT","detail":"Sat, September 26th at 10:00 PM EDT","shortDetail":"9/26 - 10:00 PM EDT"}}},{"id":"411","uid":"s:20~l:23~e:411","date":"2026-09-26T16:00Z","name":"Miami Hurricanes at Clemson Tigers","shortName":"MIA @ CLEM","competitions":[{"id":"411","date":"2026-09-26T16:00Z","neutralSite":false,"conferenceCompetition":true,"venue":{"fullName":"Stadium","address":{"city":"City","state":"ST"}},"competitors":[{"id":"228","uid":"s:20~l:23~t:228","type":"team","order":0,"homeAway":"home","team":{"id":"228","location":"Clemson","name":"Tigers","abbreviation":"CLEM","displayName":"Clemson Tigers","shortDisplayName":"Clemson","color":"F66733","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/228.png","conferenceId":"1"},"score":"17","curatedRank":{"current":99},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}],"winner":false},{"id":"2390","uid":"s:20~l:23~t:2390","type":"team","order":1,"homeAway":"away","team":{"id":"2390","location":"Miami","name":"Hurricanes","abbreviation":"MIA","displayName":"Miami Hurricanes","shortDisplayName":"Miami","color":"F47321","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/2390.png","conferenceId":"1"},"score":"21","curatedRank":{"current":7},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}],"winner":true}],"status":{"clock":0.0,"displayClock":"0:00","period":4,"type":{"id":"1","name":"STATUS_FINAL","state":"post","completed":true,"description":"Final","detail":"Final","shortDetail":"Final"}},"broadcasts":[{"market":"national","names":["ESPN"]}],"odds":[{"provider":{"id":"58","name":"ESPN BET","priority":1},"details":"MIA -3","overUnder":46.5,"spread":3,"awayTeamOdds":{"favorite":true,"underdog":false,"team":{"id":"2390"}},"homeTeamOdds":{"favorite":false,"underdog":true,"team":{"id":"228"}}}]}],"status":{"clock":0.0,"displayClock":"0:00","period":4,"type":{"id":"1","name":"STATUS_FINAL","state":"post","completed":true,"description":"Final","detail":"Final","shortDetail":"Final"}}},{"id":"412","uid":"s:20~l:23~e:412","date":"2026-09-26T19:30Z","name":"Florida State Seminoles at Arizona Wildcats","shortName":"FSU @ ARIZ","competitions":[{"id":"412","date":"2026-09-26T19:30Z","neutralSite":false,"conferenceCompetition":false,"venue":{"fullName":"Stadium","address":{"city":"City","state":"ST"}},"competitors":[{"id":"12","uid":"s:20~l:23~t:12","type":"team","order":0,"homeAway":"home","team":{"id":"12","location":"Arizona","name":"Wildcats","abbreviation":"ARIZ","displayName":"Arizona Wildcats","shortDisplayName":"Arizona","color":"CC0033","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/12.png","conferenceId":"4"},"score":"10","curatedRank":{"current":99},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}]},{"id":"52","uid":"s:20~l:23~t:52","type":"team","order":1,"homeAway":"away","team":{"id":"52","location":"Florida State","name":"Seminoles","abbreviation":"FSU","displayName":"Florida State Seminoles","shortDisplayName":"Florida State","color":"782F40","logo":"https://a.espncdn.com/i/teamlogos/ncaa/500/52.png","conferenceId":"1"},"score":"10","curatedRank":{"current":99},"records":[{"name":"overall","abbreviation":"Game","type":"total","summary":"3-1"}]}],"status":{"clock":0.0,"displayClock":"6:41","period":2,"type":{"id":"1","name":"STATUS_DELAYED","state":"in","completed":false,"description":"Delayed","detail":"Delayed","shortDetail":"Delayed"}},"broadcasts":[{"market":"national","names":["ESPN2"]}]}],"status":{"clock":0.0,"displayClock":"6:41","period":2,"type":{"id":"1","name":"STATUS_DELAYED","state":"in","completed":false,"description":"Delayed","detail":"Delayed","shortDetail":"Delayed"}}}]}</script>
+<script>
+(() => {
+'use strict';
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const API = 'https://site.api.espn.com/apis/site/v2/sports/football/college-football';
+const KEY = 'cfbboard.v1', TKEY = 'cfbboard.teams.v1';
+const FOOTBALL = '<svg class="ball" viewBox="0 0 24 14" aria-label="possession"><ellipse cx="12" cy="7" rx="11" ry="6" fill="#b8632f" stroke="#f4f6f8" stroke-width=".9"/><path d="M7.5 7h9M9.5 5.2v3.6M12 5.2v3.6M14.5 5.2v3.6" stroke="#f4f6f8" stroke-width="1.1" fill="none"/></svg>';
+const ASPECT_MIN = 1.25, ASPECT_MAX = 2.1;
+// ESPN group ids → conference names (FBS). Unknown ids fall back to "Conf <id>".
+const CONF = { '1': ['ACC', 'ACC'], '4': ['B12', 'Big 12'], '5': ['B1G', 'Big Ten'], '8': ['SEC', 'SEC'], '9': ['P12', 'Pac-12'],
+  '12': ['CUSA', 'Conference USA'], '15': ['MAC', 'MAC'], '17': ['MWC', 'Mountain West'], '18': ['IND', 'Independents'],
+  '37': ['SBC', 'Sun Belt'], '151': ['AAC', 'American'] };
+const confShort = id => id ? (CONF[id] ? CONF[id][0] : 'C' + id) : '';
+const confName = id => id ? (CONF[id] ? CONF[id][1] : 'Conference ' + id) : '';
+
+const DEFAULTS = {
+  favorites: [{ id: '24', name: 'Stanford', abbr: 'STAN', logo: 'https://a.espncdn.com/i/teamlogos/ncaa/500/24.png' }],
+  overrides: {},        // eventId -> true (force on board) | false (force off)
+  order: [],            // manual board order (event ids)
+  orderMode: 'auto',    // auto | manual | conf
+  favConfs: [],         // conference ids whose games are on the board by default
+  upsetSpread: 7,       // underdog by at least this many points
+  late: '4th',          // 4th | 2h — when "late" begins
+  autoUpset: true,      // upset watch/alert pulls a game onto the board
+  closeEdge: true,      // red edge on any close game late
+  confTags: true,       // conference tag in card headers
+  pickGroup: 'day',     // Picks grouping: day | conf
+  refresh: 30,          // seconds
+  ticker: true,
+  finals: 'dim',        // dim | show | hide
+  showOdds: false,
+  showRecords: true,
+  showNetwork: true,
+  labels: 'auto',       // auto | name | abbr
+  demo: false,
+};
+
+// ---------- state ----------
+let state = load();
+function load() {
+  let s = {};
+  try { s = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { s = {}; }
+  const out = Object.assign({}, DEFAULTS, s);
+  out.favorites = Array.isArray(out.favorites) ? out.favorites : DEFAULTS.favorites.slice();
+  out.overrides = out.overrides && typeof out.overrides === 'object' ? out.overrides : {};
+  out.order = Array.isArray(out.order) ? out.order : [];
+  out.favConfs = Array.isArray(out.favConfs) ? out.favConfs.map(String) : [];
+  if (s.manualOrder && !s.orderMode) out.orderMode = 'manual';
+  return out;
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable: run in memory */ } }
+if (new URLSearchParams(location.search).has('demo')) state.demo = true;
+
+// v3: phone / touch mode. Narrow screens and touch-first devices get a scrolling board and tap controls.
+const MQ = matchMedia('(max-width: 700px), (pointer: coarse)');
+let M = MQ.matches;
+document.body.classList.toggle('m', M);
+
+// ---------- data ----------
+let games = [], week = null, season = null, lastOk = 0, lastErr = '', loading = false, nextAt = 0, timer = null;
+let allTeams = null;
+
+function normalize(ev) {
+  const comp = (ev.competitions && ev.competitions[0]) || {};
+  const st = comp.status || ev.status || {};
+  const t = st.type || {};
+  const cs = comp.competitors || [];
+  const awayC = cs.find(c => c.homeAway === 'away') || cs[1] || {};
+  const homeC = cs.find(c => c.homeAway === 'home') || cs[0] || {};
+  const sit = comp.situation || null;
+  const team = (c, tos) => {
+    const tm = c.team || {};
+    const rank = c.curatedRank && c.curatedRank.current;
+    const rec = (c.records || []).find(r => r.type === 'total' || r.name === 'overall');
+    return {
+      id: String(tm.id ?? ''), name: tm.shortDisplayName || tm.displayName || tm.name || '?',
+      abbr: tm.abbreviation || '', logo: tm.logo || (tm.logos && tm.logos[0] && tm.logos[0].href) || '',
+      score: c.score != null ? String(c.score) : '', rank: rank && rank <= 25 ? rank : null,
+      record: rec ? (rec.summary || '') : '', winner: !!c.winner, timeouts: (tos == null ? null : tos),
+      conf: tm.conferenceId != null ? String(tm.conferenceId) : '',
+    };
+  };
+  const bc = (comp.broadcasts && comp.broadcasts[0] && comp.broadcasts[0].names && comp.broadcasts[0].names[0])
+    || ((comp.geoBroadcasts || []).find(g => g.type && g.type.shortName === 'TV') || {}).media?.shortName || '';
+  const away = team(awayC, sit && sit.awayTimeouts), home = team(homeC, sit && sit.homeTimeouts);
+  const o = comp.odds && comp.odds[0];
+  let odds = null;
+  if (o) {
+    let spread = typeof o.spread === 'number' ? Math.abs(o.spread) : NaN;
+    if (isNaN(spread)) { const m = /-(\d+(?:\.\d+)?)\s*$/.exec(o.details || ''); if (m) spread = parseFloat(m[1]); }
+    let favId = null;
+    if (o.homeTeamOdds && o.homeTeamOdds.favorite) favId = home.id;
+    else if (o.awayTeamOdds && o.awayTeamOdds.favorite) favId = away.id;
+    else if (typeof o.spread === 'number' && o.spread !== 0) favId = o.spread < 0 ? home.id : away.id;
+    else if (o.details) { const ab = (o.details.split(' ')[0] || '').toUpperCase(); if (ab === home.abbr) favId = home.id; else if (ab === away.abbr) favId = away.id; }
+    odds = { details: o.details || '', ou: o.overUnder, spread: isNaN(spread) ? null : spread, favId, dogId: favId ? (favId === home.id ? away.id : home.id) : null };
+  }
+  const venue = comp.venue ? [comp.venue.fullName, comp.venue.address && comp.venue.address.city, comp.venue.address && comp.venue.address.state].filter(Boolean).join(', ') : '';
+  const anyWinner = !!(awayC.winner || homeC.winner);
+  return {
+    id: String(ev.id), date: new Date(comp.date || ev.date), name: ev.shortName || ev.name || '',
+    state: t.state || 'pre', statusName: t.name || '', detail: t.shortDetail || t.detail || '', completed: !!t.completed,
+    period: st.period || 0, clock: st.displayClock || '',
+    away, home, anyWinner, confGame: !!comp.conferenceCompetition,
+    possession: sit && sit.possession ? String(sit.possession) : null,
+    downDistance: (sit && (sit.downDistanceText || sit.shortDownDistanceText)) || '',
+    redZone: !!(sit && sit.isRedZone), lastPlay: (sit && sit.lastPlay && sit.lastPlay.text) || '',
+    network: bc, odds,
+    venue, neutral: !!comp.neutralSite,
+  };
+}
+
+function ingest(json) {
+  const evs = (json && json.events) || [];
+  games = evs.map(normalize).filter(g => g.id);
+  week = json && json.week && json.week.number || null;
+  season = json && json.season && json.season.year || null;
+  // prune per-week state that refers to games no longer in the slate
+  const ids = new Set(games.map(g => g.id));
+  let changed = false;
+  for (const k of Object.keys(state.overrides)) if (!ids.has(k)) { delete state.overrides[k]; changed = true; }
+  const ord = state.order.filter(id => ids.has(id));
+  if (ord.length !== state.order.length) { state.order = ord; changed = true; }
+  if (changed) save();
+}
+
+async function fetchJSON(url) {
+  const ctl = new AbortController();
+  const to = setTimeout(() => ctl.abort(), 15000);
+  try {
+    const res = await fetch(url, { cache: 'no-store', signal: ctl.signal });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return await res.json();
+  } finally { clearTimeout(to); }
+}
+function ymd(d) { return d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0'); }
+
+function demoData() {
+  const raw = JSON.parse(document.getElementById('demo-data').textContent);
+  // shift the fixture's Saturday onto today so kickoff times read naturally
+  const ref = new Date(2026, 8, 26), today = new Date(); today.setHours(0, 0, 0, 0);
+  const delta = today - ref;
+  for (const ev of raw.events) {
+    const d = new Date(new Date(ev.date).getTime() + delta).toISOString();
+    ev.date = d; if (ev.competitions && ev.competitions[0]) ev.competitions[0].date = d;
+  }
+  return raw;
+}
+
+async function refresh() {
+  if (loading) return;
+  loading = true; renderStatus();
+  try {
+    let json;
+    if (state.demo) {
+      json = demoData();
+    } else {
+      json = await fetchJSON(API + '/scoreboard?groups=80&limit=300&_=' + Date.now());
+      if (!json.events || !json.events.length) {
+        // off-week or odd calendar edge: fall back to today's date explicitly
+        json = await fetchJSON(API + '/scoreboard?groups=80&limit=300&dates=' + ymd(new Date()) + '&_=' + Date.now());
+      }
+    }
+    ingest(json); lastOk = Date.now(); lastErr = '';
+  } catch (e) {
+    lastErr = (e && e.name === 'AbortError') ? 'timed out' : ((e && e.message) || String(e));
+  } finally {
+    loading = false;
+    nextAt = Date.now() + state.refresh * 1000;
+    renderAll();
+  }
+}
+function schedule() {
+  clearInterval(timer);
+  timer = setInterval(() => { if (Date.now() >= nextAt) refresh(); }, 1000);
+}
+
+// ---------- upset watch / close game / conference label ----------
+function isLate(g) { return g.state === 'in' && g.period >= (state.late === '2h' ? 3 : 4); }
+function upsetOf(g) {
+  if (g.state === 'pre') return null;
+  const th = +state.upsetSpread || 0;
+  let dogId = null, size = null, basis = 'line';
+  if (g.odds && g.odds.dogId && g.odds.spread != null) { dogId = g.odds.dogId; size = g.odds.spread; }
+  else if (g.away.rank && !g.home.rank) { dogId = g.home.id; size = 7; basis = 'rank'; }
+  else if (g.home.rank && !g.away.rank) { dogId = g.away.id; size = 7; basis = 'rank'; }
+  if (!dogId || size < th) return null;
+  const dog = dogId === g.home.id ? g.home : g.away, fav = dog === g.home ? g.away : g.home;
+  const ds = +dog.score || 0, fs = +fav.score || 0;
+  if (g.state === 'post') return (g.anyWinner ? dog.winner : ds > fs) ? { tier: 'final', dog, fav, size, basis } : null;
+  if (!isLate(g)) return null;
+  if (ds > fs) return { tier: 'alert', dog, fav, size, basis };
+  if (fs - ds <= 8) return { tier: 'watch', dog, fav, size, basis };
+  return null;
+}
+const autoStuck = new Set();   // games the upset watch pulled onto the board stay until they end
+function annotate() {
+  for (const g of games) {
+    g.up = upsetOf(g);
+    g.close = isLate(g) && Math.abs((+g.home.score || 0) - (+g.away.score || 0)) <= 8;
+    g.confLabel = g.confGame || g.away.conf === g.home.conf ? confShort(g.home.conf) : [confShort(g.away.conf), confShort(g.home.conf)].filter(Boolean).join('–');
+    if (g.state === 'post') autoStuck.delete(g.id);
+  }
+}
+const UPSET_LABEL = { watch: 'Upset watch', alert: 'Upset alert', final: 'Upset' };
+const upCls = g => g.up ? (g.up.tier === 'watch' ? 'uw' : g.up.tier === 'alert' ? 'ua' : 'uf') : '';
+function upsetBadge(g, cls) { return g.up ? '<span class="' + (cls || 'badge') + ' ' + upCls(g) + '">' + UPSET_LABEL[g.up.tier] + '</span>' : ''; }
+
+// ---------- selection & ordering ----------
+const favIds = () => new Set(state.favorites.map(f => String(f.id)));
+const favConfSet = () => new Set(state.favConfs);
+function isFavGame(g, fs) { fs = fs || favIds(); const fc = favConfSet(); return fs.has(g.away.id) || fs.has(g.home.id) || (!!g.away.conf && fc.has(g.away.conf)) || (!!g.home.conf && fc.has(g.home.conf)); }
+function isAutoUpset(g) { return !!(state.autoUpset && g.state === 'in' && ((g.up && g.up.tier !== 'final') || autoStuck.has(g.id))); }
+function isPicked(g, fs) {
+  const o = state.overrides[g.id];
+  if (o != null) return !!o;
+  if (isFavGame(g, fs)) return true;
+  if (isAutoUpset(g)) { autoStuck.add(g.id); return true; }
+  return false;
+}
+function stateRank(g) { return g.state === 'in' ? 0 : g.state === 'pre' ? 1 : 2; }
+function dramaRank(g) { return g.up && g.up.tier === 'alert' ? 0 : g.up && g.up.tier === 'watch' ? 1 : g.close ? 2 : 3; }
+function autoSort(list, fs) {
+  return list.slice().sort((a, b) => stateRank(a) - stateRank(b) || dramaRank(a) - dramaRank(b) || (isFavGame(b, fs) - isFavGame(a, fs)) || (a.date - b.date));
+}
+function confSortKey(g, fs) {
+  // in-conference game → its conference; otherwise the favorite team's conference, else the home team's
+  if (g.confGame || g.away.conf === g.home.conf) return confName(g.home.conf);
+  if (fs.has(g.away.id) && !fs.has(g.home.id)) return confName(g.away.conf);
+  return confName(g.home.conf);
+}
+function boardGames() {
+  const fs = favIds();
+  let list = games.filter(g => isPicked(g, fs));
+  if (state.finals === 'hide') list = list.filter(g => g.state !== 'post');
+  list = autoSort(list, fs);
+  if (state.orderMode === 'conf') {
+    list.sort((a, b) => confSortKey(a, fs).localeCompare(confSortKey(b, fs)) || stateRank(a) - stateRank(b) || dramaRank(a) - dramaRank(b) || (a.date - b.date));
+  } else if (state.orderMode === 'manual') {
+    const idx = new Map(state.order.map((id, i) => [id, i]));
+    const missing = list.filter(g => !idx.has(g.id)).map(g => g.id);
+    if (missing.length) { state.order = state.order.concat(missing); save(); state.order.forEach((id, i) => idx.set(id, i)); }
+    list.sort((a, b) => idx.get(a.id) - idx.get(b.id));
+  }
+  return list;
+}
+
+// ---------- formatting ----------
+const ORD = ['', '1st', '2nd', '3rd', '4th'];
+function periodLabel(p) { return p <= 4 ? (ORD[p] || '') : (p === 5 ? 'OT' : (p - 4) + 'OT'); }
+function fmtTime(d) { return d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); }
+function sameDay(a, b) { return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
+function fmtKick(d) { const now = new Date(); return (sameDay(d, now) ? '' : d.toLocaleDateString([], { weekday: 'short' }) + ' ') + fmtTime(d); }
+function statusLabel(g) {
+  const n = g.statusName;
+  if (n === 'STATUS_HALFTIME') return { text: 'Halftime', kind: 'live' };
+  if (n === 'STATUS_END_PERIOD') return { text: 'End ' + periodLabel(g.period), kind: 'live' };
+  if (n === 'STATUS_DELAYED') return { text: 'Delayed' + (g.clock && g.period ? ' · ' + g.clock + ' ' + periodLabel(g.period) : ''), kind: 'warn' };
+  if (n === 'STATUS_POSTPONED') return { text: 'Postponed', kind: 'warn' };
+  if (n === 'STATUS_CANCELED') return { text: 'Canceled', kind: 'warn' };
+  if (g.state === 'post') return { text: g.period > 4 ? 'Final/' + periodLabel(g.period) : 'Final', kind: 'final' };
+  if (g.state === 'in') return { text: (g.clock || '') + ' · ' + periodLabel(g.period), kind: 'live' };
+  return { text: fmtKick(g.date), kind: 'pre' };
+}
+function footerText(g) {
+  if (g.state === 'in') return g.downDistance || g.lastPlay || g.venue;
+  if (g.state === 'pre') return (state.showOdds && g.odds && g.odds.details) ? (g.odds.details + (g.odds.ou ? ' · O/U ' + g.odds.ou : '')) : g.venue;
+  return g.venue;
+}
+function matchup(g, withRank) {
+  const r = t => (withRank && t.rank ? '<span class="rk">' + t.rank + '</span>' : '') + esc(t.abbr || t.name);
+  return r(g.away) + (g.neutral ? ' vs ' : ' @ ') + r(g.home);
+}
+
+// ---------- rendering ----------
+const board = $('#board'), track = $('#track'), tickerEl = $('#ticker'), statusEl = $('#status'), panel = $('#panel');
+let lastTicker = '';
+
+function renderAll() { annotate(); document.body.classList.toggle('demo', !!state.demo); syncMB(); renderBoard(); renderTicker(); renderStatus(); if (!panel.hidden) renderPanel(); }
+
+function renderBoard() {
+  const list = boardGames();
+  if (!list.length) {
+    board.className = 'empty';
+    let html;
+    if (!games.length && lastErr && !lastOk) {
+      html = '<b>Couldn\'t load the scoreboard.</b><br><span class="err">' + esc(lastErr) + '</span><br><br>' +
+        (lastErr.includes('Failed to fetch') || lastErr.includes('NetworkError') || lastErr.includes('Load failed')
+          ? 'The browser could not reach ESPN\'s feed — check the network, or if you are online the feed may have started refusing browser requests (that needs a fix to the page, not to your setup).'
+          : 'Retrying automatically.') + '<br><br><span class="muted">' + (M ? 'Turn on Demo data in &#9881; Settings to check the layout.' : 'Press <kbd>D</kbd> for demo data to check the layout.') + '</span>';
+    } else if (!games.length && (loading || !lastOk)) {
+      html = 'Loading this week\'s FBS scoreboard…';
+    } else if (!games.length) {
+      html = '<b>No FBS games found for this week.</b><br><span class="muted">ESPN returned an empty slate — off week or offseason.</span>';
+    } else {
+      const favs = state.favorites.map(f => f.name).join(', ');
+      const fs = favIds(), favGames = games.filter(g => isFavGame(g, fs));
+      let why = '';
+      if (!favs) why = ', or add favorite teams so their games show automatically.';
+      else if (!favGames.length) why = '.<br><span class="muted">Favorites (' + esc(favs) + ') have no game in this week\'s slate.</span>';
+      else if (favGames.every(g => state.overrides[g.id] === false)) why = '.<br><span class="muted">The favorites\' games were unticked in Picks — "Reset to favorites" brings them back.</span>';
+      else why = '.<br><span class="muted">The favorites\' games are final and finals are hidden (' + (M ? 'tap Finals' : 'press <kbd>H</kbd>') + ' to show them).</span>';
+      html = '<b>Nothing on the board yet.</b><br>' + (M ? 'Tap &#9881; to pick games' : 'Press <kbd>P</kbd> or the gear to pick games') + why;
+    }
+    board.innerHTML = '<div class="msg">' + html + '</div>';
+    return;
+  }
+  const keepTop = board.scrollTop;
+  board.className = M && board.classList.contains('scroll') ? 'scroll' : '';
+  const n = list.length;
+  const mw = M ? layout(n) : 0;
+  const useAbbr = state.labels === 'abbr' || (state.labels === 'auto' && (M ? mw < 300 : n >= 9));
+  const fs = favIds();
+  board.innerHTML = list.map(g => card(g, useAbbr, fs)).join('');
+  layout(n);
+  if (M) board.scrollTop = keepTop;
+}
+
+function card(g, useAbbr, fs) {
+  const st = statusLabel(g);
+  const live = g.state === 'in';
+  const cls = ['card', st.kind, isFavGame(g, fs) ? 'fav' : '', g.redZone && live ? 'rz' : '', st.kind === 'final' && state.finals === 'dim' ? 'dimmed' : '',
+    g.up && g.up.tier !== 'final' ? upCls(g) : '', state.closeEdge && g.close && !(g.up && g.up.tier !== 'final') ? 'close' : ''].filter(Boolean).join(' ');
+  return '<div class="' + cls + '" data-id="' + esc(g.id) + '"><div class="c">' +
+    '<div class="hd"><span class="st">' + (st.kind === 'live' ? '<i class="dot"></i>' : '') + esc(st.text) + '</span>' +
+    '<span class="hr">' + (state.confTags && g.confLabel ? '<span class="ctag">' + esc(g.confLabel) + '</span>' : '') +
+    '<span class="net">' + (state.showNetwork ? esc(g.network) : '') + '</span></span></div>' +
+    teamRow(g, g.away, useAbbr, live) + teamRow(g, g.home, useAbbr, live) +
+    '<div class="ft"><span class="fl">' + esc(footerText(g)) + '</span><span class="fr">' + (g.up ? upsetBadge(g) : (g.neutral ? 'Neutral site' : '')) + '</span></div>' +
+    '</div></div>';
+}
+function teamRow(g, t, useAbbr, live) {
+  const poss = live && g.possession && g.possession === t.id;
+  const loser = g.state === 'post' && g.anyWinner && !t.winner;
+  const name = useAbbr ? (t.abbr || t.name) : t.name;
+  const long = !useAbbr && name.length > 12 ? ' long' : '';
+  let to = '';
+  if (live && t.timeouts != null) {
+    const k = Math.max(0, Math.min(3, t.timeouts));
+    to = '<span class="to">' + '<i></i>'.repeat(k) + '<i class="u"></i>'.repeat(3 - k) + '</span>';
+  }
+  return '<div class="tm' + (poss ? ' poss' : '') + (loser ? ' loser' : '') + '">' +
+    (t.logo ? '<img class="logo" src="' + esc(t.logo) + '" alt="" onerror="this.style.visibility=\'hidden\'">' : '<span class="logo"></span>') +
+    '<div class="nm"><span class="name' + long + '">' + (t.rank ? '<span class="rk">' + t.rank + '</span>' : '') + esc(name) + '</span>' +
+    '<span class="sub">' + (state.showRecords && t.record ? '<span>' + esc(t.record) + '</span>' : '') + to + '</span></div>' +
+    (poss ? FOOTBALL : '') +
+    '<span class="sc">' + (g.state === 'pre' ? '' : esc(t.score)) + '</span></div>';
+}
+
+function layout(n) {
+  if (!n) return;
+  const cs = getComputedStyle(board);
+  const gap = parseFloat(cs.gap) || 0, padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight), padY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+  const W = board.clientWidth - padX, H = board.clientHeight - padY;
+  if (W <= 0 || H <= 0) return;
+  const target = 1.6;
+  let best = { c: 1, s: -1 };
+  for (let c = 1; c <= n; c++) {
+    const r = Math.ceil(n / c);
+    const cw = (W - gap * (c - 1)) / c, ch = (H - gap * (r - 1)) / r;
+    const s = Math.min(cw / target, ch);            // the scale at which a target-aspect card fits the cell
+    if (s > best.s) best = { c, s, cw, ch, r };
+  }
+  const { c, r, cw, ch } = best;
+  let w = Math.floor(Math.min(cw, ch * ASPECT_MAX)), h = Math.floor(Math.min(ch, cw / ASPECT_MIN));
+  if (M) {
+    // phone: keep the one-screen fit while cards stay readable, otherwise scroll a grid of full-size cards
+    if (w >= 280 && h >= 150) board.classList.remove('scroll');
+    else {
+      const cols = Math.max(1, Math.floor((W + gap) / (340 + gap)));
+      w = Math.floor((W - gap * (cols - 1)) / cols); h = Math.round(w / 1.9);
+      board.classList.add('scroll');
+    }
+  }
+  board.style.setProperty('--cw', w + 'px');
+  board.style.setProperty('--ch', h + 'px');
+  return w;
+}
+let lastBW = 0;
+new ResizeObserver(() => {
+  const n = board.querySelectorAll('.card').length; if (!n) return;
+  if (M && board.clientWidth !== lastBW) { lastBW = board.clientWidth; renderBoard(); } else layout(n);
+}).observe(board);
+
+function renderTicker() {
+  if (!state.ticker) { tickerEl.hidden = true; lastTicker = ''; return; }
+  tickerEl.hidden = false;
+  const onBoard = new Set(boardGames().map(g => g.id));
+  const fs = favIds();
+  const rest = autoSort(games.filter(g => !onBoard.has(g.id)), fs);
+  if (!rest.length) { if (lastTicker !== '-') { track.className = 'track'; track.innerHTML = '<span class="ti muted">' + (games.length ? 'Every game this week is on the board' : '') + '</span>'; lastTicker = '-'; } return; }
+  const item = g => {
+    const st = statusLabel(g);
+    const pre = g.state === 'pre';
+    const side = t => '<span class="' + (g.state === 'post' && g.anyWinner ? (t.winner ? 'w' : 'l') : '') + '">' + (t.rank ? '<span class="rk">' + t.rank + '</span>' : '') + esc(t.abbr || t.name) + (pre ? '' : ' ' + esc(t.score)) + '</span>';
+    return '<span class="ti ' + st.kind + '">' + side(g.away) + '<span class="muted">' + (pre ? (g.neutral ? 'vs' : '@') : '') + '</span>' + side(g.home) + '<span class="k">' + esc(st.text) + '</span>' + upsetBadge(g, 'b') + '</span>';
+  };
+  const html = rest.map(item).join('');
+  if (html === lastTicker) return;
+  lastTicker = html;
+  track.className = 'track';
+  track.innerHTML = html;
+  requestAnimationFrame(() => {
+    const w = track.scrollWidth, box = tickerEl.clientWidth;
+    if (w > box) {
+      track.innerHTML = html + html;               // second copy makes the -50% loop seamless
+      track.style.setProperty('--dur', Math.max(20, Math.round(w / 55)) + 's');
+      track.className = 'track roll';
+    }
+  });
+}
+
+function renderStatus() {
+  if (M) {
+    const p = [];
+    if (state.demo) p.push('<span class="demo">Demo</span>');
+    else if (week) p.push('Wk ' + week);
+    if (loading) p.push('updating…');
+    else if (lastOk) p.push(new Date(lastOk).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }));
+    if (lastErr && (lastOk || !state.demo)) p.push('<span class="err">' + (lastOk ? 'refresh failed' : esc(lastErr)) + '</span>');
+    statusEl.innerHTML = p.map(x => '<span>' + x + '</span>').join('<span class="muted">·</span>');
+    return;
+  }
+  const parts = [];
+  if (state.demo) parts.push('<span class="demo">DEMO DATA · not live</span>');
+  else if (week) parts.push('Week ' + week + (season ? ' · ' + season : ''));
+  if (lastOk) parts.push('updated ' + new Date(lastOk).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit' }));
+  if (loading) parts.push('refreshing…');
+  else if (nextAt) parts.push('next in ' + Math.max(0, Math.ceil((nextAt - Date.now()) / 1000)) + 's');
+  if (lastErr && lastOk) parts.push('<span class="err">last refresh failed (' + esc(lastErr) + ')</span>');
+  if (lastErr && !lastOk && !state.demo) parts.push('<span class="err">' + esc(lastErr) + '</span>');
+  statusEl.innerHTML = parts.map(p => '<span>' + p + '</span>').join('<span class="muted">·</span>');
+}
+setInterval(renderStatus, 1000);
+
+// ---------- panel ----------
+let tab = 'picks';
+function openPanel(t) { if (t) tab = t; panel.hidden = false; document.body.classList.remove('idle'); renderPanel(); }
+function closePanel() { panel.hidden = true; }
+function renderPanel() {
+  panel.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
+  panel.querySelectorAll('section').forEach(s => s.hidden = s.id !== 'tab-' + tab);
+  const sec = $('#tab-' + tab), top = sec.scrollTop;
+  if (tab === 'picks') sec.innerHTML = picksHTML();
+  else if (tab === 'teams') { sec.innerHTML = teamsHTML(); ensureTeams(); }
+  else sec.innerHTML = settingsHTML();
+  sec.scrollTop = top;
+}
+
+let pickFilter = { conf: null, ranked: false, live: false };   // transient, not saved
+function pickRows(list) { return list.filter(g => (!pickFilter.conf || g.away.conf === pickFilter.conf || g.home.conf === pickFilter.conf) && (!pickFilter.ranked || g.away.rank || g.home.rank) && (!pickFilter.live || g.state === 'in')); }
+function dayKey(g) { return g.date.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' }); }
+function picksHTML() {
+  if (!games.length) return '<p class="muted">' + (lastErr ? 'No slate loaded yet — ' + esc(lastErr) : 'Loading the slate…') + '</p>';
+  const fs = favIds();
+  const onBoard = boardGames();
+  const shown = pickRows(games);
+  // conference chips from the slate, most games first
+  const counts = new Map();
+  games.forEach(g => new Set([g.away.conf, g.home.conf].filter(Boolean)).forEach(c => counts.set(c, (counts.get(c) || 0) + 1)));
+  const confs = [...counts.entries()].sort((a, b) => b[1] - a[1] || confName(a[0]).localeCompare(confName(b[0])));
+  const anyConf = confs.length > 0;
+  let h = '<div class="ph"><span><b>' + (state.demo ? 'Demo slate' : 'Week ' + (week || '?')) + '</b> · ' + games.length + ' games · <b>' + onBoard.length + '</b> on board</span>' +
+    '<span><button class="btn sm" data-act="reset">Reset to favorites</button> <button class="btn sm" data-act="clear">Clear all</button></span></div>';
+  h += '<div class="chips">' +
+    '<button class="chip' + (!pickFilter.conf ? ' on' : '') + '" data-chip="conf" data-v="">All</button>' +
+    confs.map(([c, n]) => '<button class="chip' + (pickFilter.conf === c ? ' on' : '') + '" data-chip="conf" data-v="' + esc(c) + '">' + esc(confName(c)) + '<small>' + n + '</small></button>').join('') +
+    (anyConf ? '' : '<span class="note">No conference data in this slate.</span>') +
+    '<button class="chip' + (pickFilter.ranked ? ' on' : '') + '" data-chip="ranked">Ranked</button>' +
+    '<button class="chip live' + (pickFilter.live ? ' on' : '') + '" data-chip="live">Live now</button></div>';
+  h += '<div class="tools"><span class="seg"><button data-act="group" data-v="day"' + (state.pickGroup !== 'conf' ? ' class="on"' : '') + '>By day</button><button data-act="group" data-v="conf"' + (state.pickGroup === 'conf' ? ' class="on"' : '') + '>By conference</button></span>' +
+    '<span class="muted" style="font-size:12px">' + shown.length + ' shown</span>' +
+    '<button class="btn sm" data-act="tickall">Tick shown</button><button class="btn sm" data-act="untickall">Untick shown</button></div>';
+  h += '<div class="note">★ = involves a favorite team or conference, on by default. Ticking or unticking overrides that for this week only. Upset watches are pulled onto the board automatically' + (state.autoUpset ? '' : ' (off in Settings)') + '.</div>';
+  if (state.orderMode === 'manual' && onBoard.length > 1) {
+    h += '<h4>Board order</h4>' + onBoard.map((g, i) => '<div class="ord"><span class="muted">' + (i + 1) + '</span><span class="g">' + matchup(g, true) + '</span>' +
+      '<button class="btn sm" data-act="up" data-id="' + esc(g.id) + '"' + (i === 0 ? ' disabled' : '') + '>&uarr;</button><button class="btn sm" data-act="down" data-id="' + esc(g.id) + '"' + (i === onBoard.length - 1 ? ' disabled' : '') + '>&darr;</button></div>').join('');
+  }
+  // grouping
+  const groups = new Map();
+  const add = (k, g) => { if (!groups.has(k)) groups.set(k, []); groups.get(k).push(g); };
+  const sorted = shown.slice().sort((a, b) => a.date - b.date);
+  if (state.pickGroup === 'conf') {
+    sorted.forEach(g => { const cs = new Set([g.away.conf, g.home.conf].filter(Boolean)); if (!cs.size) add('Other', g); cs.forEach(c => add(confName(c), g)); });
+  } else {
+    sorted.forEach(g => add(dayKey(g), g));
+  }
+  const keys = state.pickGroup === 'conf' ? [...groups.keys()].sort((a, b) => a.localeCompare(b)) : [...groups.keys()];
+  for (const k of keys) {
+    const list = groups.get(k).slice().sort((a, b) => (state.pickGroup === 'conf' ? stateRank(a) - stateRank(b) : 0) || dramaRank(a) - dramaRank(b) || (a.date - b.date));
+    h += '<h4>' + esc(k) + (state.pickGroup === 'conf' ? ' <span class="muted">· ' + list.length + '</span>' : '') + '</h4>';
+    for (const g of list) {
+      const st = statusLabel(g), fav = isFavGame(g, fs), on = isPicked(g, fs);
+      const auto = on && state.overrides[g.id] == null && !fav;
+      const rowCls = 'row' + (g.up && g.up.tier !== 'final' ? ' ' + upCls(g) : (state.closeEdge && g.close ? ' close' : ''));
+      h += '<label class="' + rowCls + '"><input type="checkbox" data-id="' + esc(g.id) + '"' + (on ? ' checked' : '') + '>' +
+        '<span class="t">' + (g.up ? upsetBadge(g, 'b') : esc(fmtTime(g.date)) + (state.pickGroup === 'conf' && !sameDay(g.date, new Date()) ? (M ? ' ' : '<br>') + esc(g.date.toLocaleDateString([], { weekday: 'short' })) : '')) + '</span>' +
+        '<span class="g">' + matchup(g, true) + (g.confLabel && state.pickGroup !== 'conf' ? '<span class="cf">' + esc(g.confLabel) + '</span>' : '') + '</span>' +
+        '<span class="s ' + st.kind + '">' + (g.state === 'pre' ? esc(g.network) : esc(g.away.score + '–' + g.home.score + ' · ' + st.text)) + '</span>' +
+        '<span class="star">' + (fav ? '★' : (auto ? '<span class="auto" title="On the board because of the upset watch">auto</span>' : '')) + '</span></label>';
+    }
+  }
+  if (!shown.length) h += '<p class="muted">Nothing matches those chips.</p>';
+  return h;
+}
+
+function teamsHTML(filter) {
+  let h = '<h4>Favorites <span class="muted">(their games are always on the board)</span></h4>';
+  if (!state.favorites.length) h += '<p class="muted">None yet.</p>';
+  h += state.favorites.map((f, i) => '<div class="favrow">' + (f.logo ? '<img src="' + esc(f.logo) + '" alt="" onerror="this.style.visibility=\'hidden\'">' : '') +
+    '<span class="g">' + esc(f.name) + ' <small class="muted">' + esc(f.abbr) + '</small></span>' +
+    '<button class="btn sm" data-act="fup" data-i="' + i + '"' + (i === 0 ? ' disabled' : '') + '>&uarr;</button>' +
+    '<button class="btn sm" data-act="fdown" data-i="' + i + '"' + (i === state.favorites.length - 1 ? ' disabled' : '') + '>&darr;</button>' +
+    '<button class="btn sm" data-act="frm" data-i="' + i + '" title="Remove">&#10005;</button></div>').join('');
+  h += '<h4>Favorite conferences <span class="muted">(every game involving one of its teams)</span></h4><div class="chips">' +
+    Object.keys(CONF).map(c => '<button class="chip' + (state.favConfs.includes(c) ? ' on' : '') + '" data-act="fconf" data-v="' + c + '">' + esc(confName(c)) + '</button>').join('') + '</div>' +
+    (state.favConfs.length ? '<div class="note">One conference is roughly 7–8 games a week; pair it with "Finals: hide" to keep the board readable.</div>' : '');
+  h += '<h4>Add a team</h4><input type="search" id="tsearch" placeholder="Search FBS teams…" autocomplete="off" value="' + esc(filter || '') + '">';
+  h += '<div id="tlist">' + teamListHTML(filter || '') + '</div>';
+  return h;
+}
+function teamListHTML(q) {
+  const fs = favIds();
+  let pool = allTeams;
+  if (!pool) {
+    const m = new Map();
+    games.forEach(g => [g.away, g.home].forEach(t => { if (t.id && !m.has(t.id)) m.set(t.id, { id: t.id, name: t.name, abbr: t.abbr, logo: t.logo }); }));
+    pool = [...m.values()];
+    if (!pool.length) return '<p class="muted">Loading team list…</p>';
+  }
+  q = (q || '').trim().toLowerCase();
+  let list = pool.filter(t => !fs.has(t.id) && (!q || t.name.toLowerCase().includes(q) || (t.abbr || '').toLowerCase().includes(q) || (t.full || '').toLowerCase().includes(q)));
+  list.sort((a, b) => a.name.localeCompare(b.name));
+  const note = allTeams ? '' : '<p class="note">Showing teams in this week\'s slate' + (state.demo ? ' (demo)' : ' while the full list loads') + '.</p>';
+  return note + list.slice(0, 60).map(t => '<div class="tl">' + (t.logo ? '<img src="' + esc(t.logo) + '" alt="" onerror="this.style.visibility=\'hidden\'">' : '') +
+    '<span class="g">' + esc(t.name) + '<small>' + esc(t.abbr) + '</small></span><button class="btn sm" data-act="fadd" data-id="' + esc(t.id) + '">Add</button></div>').join('') +
+    (list.length > 60 ? '<p class="note">' + (list.length - 60) + ' more — keep typing to narrow.</p>' : '') + (!list.length ? '<p class="muted">No match.</p>' : '');
+}
+async function ensureTeams() {
+  if (allTeams) return;
+  try {
+    const c = JSON.parse(localStorage.getItem(TKEY) || 'null');
+    if (c && c.at && Date.now() - c.at < 30 * 864e5 && Array.isArray(c.teams) && c.teams.length > 50) { allTeams = c.teams; if (tab === 'teams') renderPanel(); return; }
+  } catch (e) { /* ignore */ }
+  if (state.demo) return;
+  try {
+    const j = await fetchJSON(API + '/teams?groups=80&limit=200');
+    const arr = (((j.sports || [])[0] || {}).leagues || [])[0]?.teams || [];
+    const teams = arr.map(x => x.team || {}).filter(t => t.id).map(t => ({ id: String(t.id), name: t.shortDisplayName || t.displayName || t.name, full: t.displayName || '', abbr: t.abbreviation || '', logo: (t.logos && t.logos[0] && t.logos[0].href) || t.logo || '' }));
+    if (teams.length) { allTeams = teams; try { localStorage.setItem(TKEY, JSON.stringify({ at: Date.now(), teams })); } catch (e) { /* ignore */ } if (tab === 'teams') renderPanel(); }
+  } catch (e) { /* the slate-derived list stays in place */ }
+}
+
+function settingsHTML() {
+  const sel = (name, opts, val) => '<select data-set="' + name + '">' + opts.map(([v, l]) => '<option value="' + v + '"' + (String(val) === String(v) ? ' selected' : '') + '>' + l + '</option>').join('') + '</select>';
+  const chk = (name, val) => '<input type="checkbox" data-set="' + name + '"' + (val ? ' checked' : '') + '>';
+  return '<div class="set"><div><label>Refresh every</label></div>' + sel('refresh', [[15, '15 s'], [30, '30 s'], [60, '60 s'], [120, '2 min']], state.refresh) + '</div>' +
+    '<div class="set"><div><label>Finals</label><small>Finished games on the board</small></div>' + sel('finals', [['dim', 'Show, dimmed'], ['show', 'Show'], ['hide', 'Hide (move to ticker)']], state.finals) + '</div>' +
+    '<div class="set"><div><label>Board order</label><small>Auto: live first (upset alerts and close games on top), then upcoming, then finals</small></div>' + sel('orderMode', [['auto', 'Auto'], ['conf', 'By conference'], ['manual', 'Manual (arrows in Picks)']], state.orderMode) + '</div>' +
+    '<div class="set"><div><label>Conference tag on cards</label></div>' + chk('confTags', state.confTags) + '</div>' +
+    '<h4>Upset watch</h4>' +
+    '<div class="set"><div><label>Underdog by at least</label><small>From the pregame line; ranked-vs-unranked when there is no line</small></div>' + sel('upsetSpread', [[3, '3 points'], [7, '7 points'], [10, '10 points'], [14, '14 points']], state.upsetSpread) + '</div>' +
+    '<div class="set"><div><label>"Late" means</label></div>' + sel('late', [['4th', '4th quarter or OT'], ['2h', 'Second half']], state.late) + '</div>' +
+    '<div class="set"><div><label>Pull upset watches onto the board</label><small>Even if you never ticked the game; it stays until it ends</small></div>' + chk('autoUpset', state.autoUpset) + '</div>' +
+    '<div class="set"><div><label>Red edge on close games</label><small>Any game within one score late, no underdog logic</small></div>' + chk('closeEdge', state.closeEdge) + '</div>' +
+    '<h4>Display</h4>' +
+    '<div class="set"><div><label>Team labels</label><small>Auto switches to abbreviations at 9+ games</small></div>' + sel('labels', [['auto', 'Auto'], ['name', 'Names'], ['abbr', 'Abbreviations']], state.labels) + '</div>' +
+    '<div class="set"><div><label>Ticker of other games</label><small>Everything not on the board scrolls along the bottom</small></div>' + chk('ticker', state.ticker) + '</div>' +
+    '<div class="set"><div><label>TV network</label></div>' + chk('showNetwork', state.showNetwork) + '</div>' +
+    '<div class="set"><div><label>Records</label></div>' + chk('showRecords', state.showRecords) + '</div>' +
+    '<div class="set"><div><label>Point spread on upcoming games</label></div>' + chk('showOdds', state.showOdds) + '</div>' +
+    '<div class="set"><div><label>Demo data</label><small>Built-in sample games for checking the layout. Not live.</small></div>' + chk('demo', state.demo) + '</div>' +
+    '<div class="set"><div><label>Fullscreen</label><small>Or press F, or double-click the board</small></div><button class="btn" data-act="fs">Toggle</button></div>' +
+    '<div class="set"><div><label>Refresh now</label></div><button class="btn" data-act="refresh">Refresh</button></div>' +
+    '<h4>Move settings to another ' + (M ? 'device' : 'computer') + '</h4><textarea id="io" spellcheck="false">' + esc(JSON.stringify({ favorites: state.favorites, favConfs: state.favConfs, refresh: state.refresh, ticker: state.ticker, finals: state.finals, showOdds: state.showOdds, showRecords: state.showRecords, showNetwork: state.showNetwork, labels: state.labels, orderMode: state.orderMode, upsetSpread: state.upsetSpread, late: state.late, autoUpset: state.autoUpset, closeEdge: state.closeEdge, confTags: state.confTags })) + '</textarea>' +
+    '<div style="display:flex;gap:8px;margin-top:8px"><button class="btn" data-act="copy">Copy</button><button class="btn" data-act="import">Apply pasted text</button><span id="iomsg" class="muted" style="align-self:center"></span></div>' +
+    '<div class="keys"><kbd>F</kbd> fullscreen &nbsp; <kbd>P</kbd> picks &nbsp; <kbd>T</kbd> ticker &nbsp; <kbd>H</kbd> hide/show finals &nbsp; <kbd>R</kbd> refresh &nbsp; <kbd>D</kbd> demo &nbsp; <kbd>Esc</kbd> close</div>' +
+    '<div class="note">v3 · Scores and pregame lines come from ESPN\'s public scoreboard feed (FBS only). Your picks and favorites are saved in this browser.</div>';
+}
+
+// panel interactions
+panel.addEventListener('click', e => {
+  const nb = e.target.closest('nav button'); if (nb) { tab = nb.dataset.tab; renderPanel(); return; }
+  if (e.target.closest('#close')) { closePanel(); return; }
+  const ch = e.target.closest('[data-chip]');
+  if (ch) {
+    const k = ch.dataset.chip;
+    if (k === 'conf') pickFilter.conf = ch.dataset.v || null; else pickFilter[k] = !pickFilter[k];
+    renderPanel(); return;
+  }
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  const act = b.dataset.act, id = b.dataset.id, i = +b.dataset.i;
+  const fs = favIds();
+  if (act === 'reset') { state.overrides = {}; }
+  else if (act === 'clear') { state.overrides = {}; games.forEach(g => { if (isFavGame(g, fs) || isAutoUpset(g)) state.overrides[g.id] = false; }); }
+  else if (act === 'tickall' || act === 'untickall') {
+    const on = act === 'tickall';
+    pickRows(games).forEach(g => { const def = isFavGame(g, fs) || isAutoUpset(g); if (on === def) delete state.overrides[g.id]; else state.overrides[g.id] = on; });
+  }
+  else if (act === 'group') { state.pickGroup = b.dataset.v; }
+  else if (act === 'fconf') { const c = b.dataset.v; state.favConfs = state.favConfs.includes(c) ? state.favConfs.filter(x => x !== c) : state.favConfs.concat(c); }
+  else if (act === 'up' || act === 'down') {
+    const ord = boardGames().map(g => g.id); const k = ord.indexOf(id); const j = act === 'up' ? k - 1 : k + 1;
+    if (k >= 0 && j >= 0 && j < ord.length) { [ord[k], ord[j]] = [ord[j], ord[k]]; state.order = ord; }
+  }
+  else if (act === 'fup' || act === 'fdown') { const j = act === 'fup' ? i - 1 : i + 1; if (j >= 0 && j < state.favorites.length) { const f = state.favorites; [f[i], f[j]] = [f[j], f[i]]; } }
+  else if (act === 'frm') { state.favorites.splice(i, 1); }
+  else if (act === 'fadd') {
+    const pool = allTeams || []; let t = pool.find(x => x.id === id);
+    if (!t) games.forEach(g => [g.away, g.home].forEach(x => { if (x.id === id) t = { id: x.id, name: x.name, abbr: x.abbr, logo: x.logo }; }));
+    if (t && !fs.has(t.id)) state.favorites.push({ id: t.id, name: t.name, abbr: t.abbr, logo: t.logo });
+    const q = $('#tsearch') ? $('#tsearch').value : '';
+    save(); renderBoard(); renderTicker(); $('#tab-teams').innerHTML = teamsHTML(q); const inp = $('#tsearch'); if (inp) { inp.focus(); inp.setSelectionRange(inp.value.length, inp.value.length); }
+    return;
+  }
+  else if (act === 'fs') { toggleFullscreen(); return; }
+  else if (act === 'refresh') { refresh(); return; }
+  else if (act === 'copy') { const ta = $('#io'); ta.select(); navigator.clipboard?.writeText(ta.value).then(() => { $('#iomsg').textContent = 'Copied.'; }, () => { $('#iomsg').textContent = 'Select the text and copy it.'; }); return; }
+  else if (act === 'import') {
+    try {
+      const j = JSON.parse($('#io').value);
+      if (Array.isArray(j.favorites)) state.favorites = j.favorites.filter(f => f && f.id).map(f => ({ id: String(f.id), name: String(f.name || ''), abbr: String(f.abbr || ''), logo: String(f.logo || '') }));
+      if (Array.isArray(j.favConfs)) state.favConfs = j.favConfs.map(String).filter(c => CONF[c]);
+      for (const k of ['refresh', 'ticker', 'finals', 'showOdds', 'showRecords', 'showNetwork', 'labels', 'orderMode', 'upsetSpread', 'late', 'autoUpset', 'closeEdge', 'confTags']) if (k in j) state[k] = j[k];
+    } catch (err) { $('#iomsg').textContent = 'That is not valid settings text.'; return; }
+  }
+  save(); renderAll();
+  if (act === 'import') { const m = $('#iomsg'); if (m) m.textContent = 'Applied.'; }
+});
+panel.addEventListener('change', e => {
+  const t = e.target;
+  if (t.matches('input[type=checkbox][data-id]')) {
+    const g = games.find(x => x.id === t.dataset.id); if (!g) return;
+    const def = isFavGame(g) || isAutoUpset(g);
+    if (t.checked === def) delete state.overrides[g.id]; else state.overrides[g.id] = t.checked;
+    save(); renderBoard(); renderTicker();
+    const ph = $('#tab-picks .ph b:last-of-type'); if (ph) ph.textContent = boardGames().length;
+    return;
+  }
+  if (t.dataset.set) {
+    const k = t.dataset.set;
+    let v = t.type === 'checkbox' ? t.checked : t.value;
+    if (k === 'refresh' || k === 'upsetSpread') v = +v;
+    if (k === 'demo' && v) { /* switching to demo */ }
+    state[k] = v; save();
+    if (k === 'upsetSpread' || k === 'late' || k === 'autoUpset') autoStuck.clear();
+    if (k === 'demo' || k === 'refresh') { nextAt = 0; refresh(); schedule(); }
+    else renderAll();
+  }
+});
+panel.addEventListener('input', e => {
+  if (e.target.id === 'tsearch') { $('#tlist').innerHTML = teamListHTML(e.target.value); }
+});
+
+// ---------- global controls ----------
+function toggleFullscreen() {
+  if (document.fullscreenElement) document.exitFullscreen && document.exitFullscreen();
+  else document.documentElement.requestFullscreen && document.documentElement.requestFullscreen().catch(() => {});
+}
+$('#gear').addEventListener('click', () => panel.hidden ? openPanel() : closePanel());
+board.addEventListener('dblclick', toggleFullscreen);
+function doKey(k) {
+  if (k === 'f') toggleFullscreen();
+  else if (k === 'p' || k === ',') panel.hidden ? openPanel() : closePanel();
+  else if (k === 'escape') closePanel();
+  else if (k === 't') { state.ticker = !state.ticker; save(); renderAll(); }
+  else if (k === 'h') { state.finals = state.finals === 'hide' ? 'dim' : 'hide'; save(); renderAll(); }
+  else if (k === 'r') { nextAt = 0; refresh(); }
+  else if (k === 'd') { state.demo = !state.demo; save(); nextAt = 0; refresh(); }
+  else return false;
+  return true;
+}
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input,textarea,select')) { if (e.key === 'Escape') closePanel(); return; }
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (doKey(e.key.toLowerCase())) e.preventDefault();
+});
+// v3: tap controls
+const mb = $('#mb');
+function syncMB() {
+  mb.querySelector('[data-k=h]').setAttribute('aria-pressed', String(state.finals !== 'hide'));
+  mb.querySelector('[data-k=t]').setAttribute('aria-pressed', String(!!state.ticker));
+  mb.querySelector('[data-k=f]').hidden = !document.fullscreenEnabled;
+}
+mb.addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (b) doKey(b.dataset.k); });
+MQ.addEventListener('change', () => { M = MQ.matches; document.body.classList.toggle('m', M); lastBW = 0; renderAll(); });
+let idleT;
+function poke() { document.body.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(() => { if (panel.hidden) document.body.classList.add('idle'); }, 3500); }
+['mousemove', 'mousedown', 'keydown', 'touchstart'].forEach(ev => document.addEventListener(ev, poke, { passive: true }));
+document.addEventListener('visibilitychange', () => { if (!document.hidden && Date.now() - lastOk > 10000) { nextAt = 0; refresh(); } });
+
+// ---------- go ----------
+poke();
+refresh();
+schedule();
+})();
+</script>
+</body>
+</html>
