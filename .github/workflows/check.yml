@@ -1,0 +1,32 @@
+name: checks
+# Every push renders the page in demo mode and checks: the script parses, the board and the game page lay out without
+# overflow on desktop and phone, the win-probability scrub works, and the 1920×1080 board is pixel-identical to the
+# previous commit's — unless the commit message carries [board-change]. Both versions render in the same runner.
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: previous index.html
+        run: git show HEAD~1:index.html > /tmp/prev-index.html 2>/dev/null || true
+      - name: run checks
+        run: |
+          FLAG=""
+          if git log -1 --pretty=%B | grep -q '\[board-change\]'; then FLAG="--board-change"; fi
+          node tests/check.mjs --prev /tmp/prev-index.html --out tests/out $FLAG
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots
+          path: tests/out
