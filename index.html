@@ -1299,7 +1299,6 @@ function openGame(id, fromHistory) {
   if (!fromHistory) { try { const st = { gp: id }; if (history.state && history.state.gp) history.replaceState(st, '', '#g=' + id); else { history.pushState(st, '', '#g=' + id); gpPushed = true; } } catch (e) { /* file:// or sandbox */ } }
   if (changed) { gpW.scrollTop = 0; gpHead.innerHTML = ''; gpC1.innerHTML = ''; gpC2.innerHTML = ''; gpDrawn = false; gpPrev = { head: '', c1: [], c2: [] }; wpScrub = { pin: null, hover: null }; }
   renderGP(); gpFetch(changed);
-  { const g = curGame(); if (g) { schedFetch(g.away.id); schedFetch(g.home.id); } }   // v5.1: both teams' seasons
 }
 function closeGame(fromHistory) {
   if (gp.hidden) return;
@@ -1415,6 +1414,7 @@ function renderGP() {
     gpC2.innerHTML = ''; gpPrev = { head: '', c1: [], c2: [] }; return;
   }
   gpLastState = g.state;
+  schedFetch(g.away.id); schedFetch(g.home.id);   // v5.1: both teams' seasons — idempotent (cache / in-flight / back-off guards), so a deep link that opens before the slate is in still gets them
   const S = gpSum || {};
   const first = !gpDrawn;            // first render WITH stats: default open/closed states apply; after that the user's choices win
   const open = new Set([...gp.querySelectorAll('details[open][data-k]')].map(d => d.dataset.k));
@@ -1852,7 +1852,7 @@ function schedFor(id) { const c = schedCache.get(String(id)); return c && c.data
 function schedFetch(id) {
   id = String(id || ''); if (!id) return;
   const c = schedCache.get(id);
-  if (c && (c.loading || (c.at && Date.now() - c.at < SCHED_TTL && c.data))) return;
+  if (c && (c.loading || (c.at && Date.now() - c.at < (c.data ? SCHED_TTL : 60e3)))) return;   // a failed fetch is retried after a minute, not on every render
   schedCache.set(id, Object.assign({}, c || {}, { loading: true }));
   const done = (data, err) => { schedCache.set(id, { at: Date.now(), data: data || (c && c.data) || null, err: err || '', loading: false }); if (!gp.hidden) renderGP(); };
   if (state.demo) { setTimeout(() => done(demoSchedule(id)), 30); return; }

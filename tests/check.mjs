@@ -128,6 +128,7 @@ async function pixelDiff(a, b, outFile) {   // pixelmatch when it is installed (
   await load(page, INDEX, '#g=405');
   const psecs = await page.evaluate(() => [...document.querySelectorAll('#gp .gps')].map(s => s.className.replace('gps ', '')));
   ok(psecs.join(' ') === 'pre ssn', 'a scheduled game shows the preview and the season schedules only: ' + psecs.join(' '));
+  ok((await page.locator('.ssnt').count()) === 2, 'a deep link (#g=) gets both seasons too');
   ok(/moneyline|line/i.test(await page.evaluate(() => document.querySelector('.gps.pre').innerText)), 'preview carries the line');
 
   // board guards: 12 cards, flash, stale, adaptive cadence
