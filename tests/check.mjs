@@ -66,16 +66,21 @@ async function pixelDiff(a, b, outFile) {   // pixelmatch when it is installed (
   const page = await open(ctx, INDEX, '', errors);
   const cards = await page.locator('.card').count();
   ok(cards >= 1, 'default board shows the favorite\'s game(s): ' + cards);
-  const shotA = await boardShot(page, path.join(OUT, 'board-default.png'));
+  const status = v => page.evaluate(v => { document.getElementById('status').style.visibility = v; }, v);   // the countdown ticks when the test runs the clock
+  await status('hidden'); const shotA = await boardShot(page, path.join(OUT, 'board-default.png')); await status('');
   ok((await page.evaluate(() => [document.body.scrollWidth, document.body.clientWidth]))[0] <= 1920, 'board has no horizontal overflow');
 
   // game page
   await page.locator('.card').first().click();
-  await page.waitForTimeout(200);
+  await page.waitForTimeout(200); await page.clock.runFor(500); await page.waitForTimeout(100);
   ok(!(await page.evaluate(() => document.getElementById('gp').hidden)), 'clicking a tile opens the game page');
   const secs = await page.evaluate(() => [...document.querySelectorAll('#gp .gps')].map(s => s.className.replace('gps ', '')));
   ok(secs.includes('wp') && secs.includes('scor') && secs.includes('drv') && secs.includes('stats') && secs.includes('box'), 'live page has win prob, scoring, drives, team stats, box score: ' + secs.join(' '));
   ok(secs.includes('stand') && secs.includes('vid'), 'standings and highlights render');
+  await page.waitForTimeout(300);
+  const ssn = await page.evaluate(() => ({ teams: document.querySelectorAll('.ssnt').length, rows: document.querySelectorAll('.sst tr').length, me: document.querySelectorAll('.sst tr.me').length, wl: document.querySelectorAll('.sst tr.w, .sst tr.l').length, bye: document.querySelectorAll('.sst tr.bye').length, rec: document.querySelector('.ssnt .rec') && document.querySelector('.ssnt .rec').innerText }));
+  ok(ssn.teams === 2 && ssn.me === 2 && ssn.wl >= 10 && ssn.bye >= 2, 'season schedules for both teams, this game highlighted, results and byes: ' + JSON.stringify(ssn));
+  ok(/\d+-\d+/.test(ssn.rec || '') && /for \//.test(ssn.rec || ''), 'season summary line has record and points for/against: ' + ssn.rec);
   const ax = await page.evaluate(() => document.querySelector('.wp .ax') && document.querySelector('.wp .ax').innerText.replace(/\s+/g, ' '));
   ok(/Q1 Q2 Q3 Q4/.test(ax || ''), 'win probability axis is game time: ' + ax);
   ok((await page.locator('.wpo .mk').count()) > 0, 'scoring / turnover markers on the curve');
@@ -107,7 +112,7 @@ async function pixelDiff(a, b, outFile) {   // pixelmatch when it is installed (
   await page.keyboard.press('Escape');
   ok(await page.evaluate(() => document.getElementById('gp').hidden), 'second Escape closes the page');
   await page.waitForTimeout(200);
-  const shotB = await boardShot(page, path.join(OUT, 'board-after-page.png'));
+  await status('hidden'); const shotB = await boardShot(page, path.join(OUT, 'board-after-page.png')); await status('');
   const d1 = await pixelDiff(shotA, shotB, path.join(OUT, 'diff-board-after-page.png'));
   ok(d1.n === 0, 'board is pixel-identical after closing the game page (' + d1.n + ' px differ)');
 
@@ -122,7 +127,7 @@ async function pixelDiff(a, b, outFile) {   // pixelmatch when it is installed (
   ok(/OT/.test(await page.evaluate(() => document.querySelector('.wp .ax').innerText)), 'overtime gets its own axis segment');
   await load(page, INDEX, '#g=405');
   const psecs = await page.evaluate(() => [...document.querySelectorAll('#gp .gps')].map(s => s.className.replace('gps ', '')));
-  ok(psecs.length === 1 && psecs[0] === 'pre', 'a scheduled game shows only the preview: ' + psecs.join(' '));
+  ok(psecs.join(' ') === 'pre ssn', 'a scheduled game shows the preview and the season schedules only: ' + psecs.join(' '));
   ok(/moneyline|line/i.test(await page.evaluate(() => document.querySelector('.gps.pre').innerText)), 'preview carries the line');
 
   // board guards: 12 cards, flash, stale, adaptive cadence
@@ -161,6 +166,12 @@ async function pixelDiff(a, b, outFile) {   // pixelmatch when it is installed (
   ok(bo[0] <= bo[1], 'phone board has no horizontal overflow');
   await page.screenshot({ path: path.join(OUT, 'phone-board.png') });
   await load(page, INDEX, '#g=401');
+  await page.waitForTimeout(300);
+  const closed = await page.evaluate(() => { const d = document.querySelector('details[data-k^="ssn"]'); return d && !d.open; });
+  ok(closed, 'phone: season schedules start closed');
+  await page.locator('.gpt[data-team]').first().click();
+  await page.waitForTimeout(200);
+  ok(await page.evaluate(() => { const d = document.querySelector('details[data-k^="ssn"]'); return d && d.open; }), 'tapping a team in the header opens its season');
   const go = await page.evaluate(() => { document.querySelectorAll('#gp details').forEach(d => d.open = true); const w = document.getElementById('gpw'); return [w.scrollWidth, w.clientWidth]; });
   ok(go[0] <= go[1], 'phone game page has no horizontal overflow with every table open');
   // touch scrub: a drag across the chart, released → pinned
