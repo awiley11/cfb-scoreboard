@@ -304,17 +304,17 @@ details.stg2>summary b{flex:1 1 auto}
 /* v5: recap, betting lines, highlights */
 .rcp .hl{font-size:1.15em;font-weight:800;line-height:1.25;letter-spacing:-.01em}
 .rcp .ds{color:var(--muted);margin-top:.4em;line-height:1.45}
-.rcp a,.vid a,.bet a{color:#7fa4ff;text-decoration:none}
+.rcp a,.clip a,.bet a{color:#7fa4ff;text-decoration:none}
 .rcp .lk{margin-top:.5em;font-size:.85em}
 .cov{color:var(--fg);font-weight:700}.cov.push{color:var(--warn)}
-.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(11em,1fr));gap:.6em}
-.vid{position:relative;border-radius:.5em;overflow:hidden;background:#0a0e14;cursor:pointer;min-width:0;-webkit-tap-highlight-color:transparent}
-.vid img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;opacity:.85}
-.vid .cap2{padding:.35em .5em .5em;font-size:.8em;line-height:1.3;color:var(--fg)}
-.vid .du{position:absolute;top:.4em;right:.4em;font-size:.7em;font-weight:700;background:rgba(0,0,0,.65);padding:.1em .4em;border-radius:.3em;color:var(--fg)}
-.vid .pl2{position:absolute;left:50%;top:calc(28% + .5em);transform:translate(-50%,-50%);width:2.4em;height:2.4em;border-radius:50%;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;font-size:1em;color:#fff;pointer-events:none}
-.vid video{display:block;width:100%;aspect-ratio:16/9;background:#000}
-.vid.playing{grid-column:1/-1}
+.clips{display:grid;grid-template-columns:repeat(auto-fill,minmax(11em,1fr));gap:.6em}
+.clip{position:relative;border-radius:.5em;overflow:hidden;background:#0a0e14;cursor:pointer;min-width:0;-webkit-tap-highlight-color:transparent}
+.clip img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;opacity:.85}
+.clip .cap2{padding:.35em .5em .5em;font-size:.8em;line-height:1.3;color:var(--fg)}
+.clip .du{position:absolute;top:.4em;right:.4em;font-size:.7em;font-weight:700;background:rgba(0,0,0,.65);padding:.1em .4em;border-radius:.3em;color:var(--fg)}
+.clip .pl2{position:absolute;left:50%;top:calc(28% + .5em);transform:translate(-50%,-50%);width:2.4em;height:2.4em;border-radius:50%;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;font-size:1em;color:#fff;pointer-events:none}
+.clip video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+.clip.playing{grid-column:1/-1}
 /* v5: feed health in Settings */
 .fh{font-size:12px;line-height:1.6;color:var(--muted);font-variant-numeric:tabular-nums}
 .fh b{color:var(--fg);font-weight:600}
@@ -385,7 +385,7 @@ body.m .gpt .r{font-size:.8em}
 body.m .gpt .s{font-size:2.3em}
 body.m .sit .dd{font-size:1.4em}
 body.m .wp svg{height:6.5em}
-body.m .vids{grid-template-columns:repeat(2,minmax(0,1fr))}
+body.m .clips{grid-template-columns:repeat(2,minmax(0,1fr))}
 body.m .stt th:first-child,body.m .stt td:first-child{max-width:9em}
 body.m .ldr{grid-template-columns:minmax(0,1fr);gap:.5em .8em}
 body.m .ld .d{white-space:normal}
@@ -1494,7 +1494,7 @@ function finalHTML(g, S) {
   const art = S.article && S.article.headline ? S.article : null;
   const link = art && art.links && art.links.web && art.links.web.href;
   let h = '';
-  if (art) h += '<div class="rcp"><div class="hl">' + esc(art.headline) + '</div>' + (art.description ? '<div class="ds">' + esc(String(art.description).replace(/^[—–-]\s*/, '')) + '</div>' : '') +
+  if (art) h += '<div class="rcpb"><div class="hl">' + esc(art.headline) + '</div>' + (art.description ? '<div class="ds">' + esc(String(art.description).replace(/^[—–-]\s*/, '')) + '</div>' : '') +
     (link ? '<div class="lk"><a href="' + esc(link) + '" target="_blank" rel="noopener">Full recap on ESPN &rsaquo;</a></div>' : '') + '</div>';
   const li = lineInfo(g, S), rows = [];
   const a = +g.away.score || 0, hs = +g.home.score || 0;
@@ -1802,16 +1802,16 @@ function highlightsHTML(g, S) {
   const src = v => { const L = v.links && v.links.source; return (L && ((L.HD && L.HD.href) || (L.full && L.full.href) || L.href || (L.mezzanine && L.mezzanine.href))) || ''; };
   const web = v => (v.links && v.links.web && v.links.web.href) || '';
   const th = v => (v.thumbnail && (typeof v.thumbnail === 'string' ? v.thumbnail : v.thumbnail.href)) || '';
-  return sec('vid', 'Highlights', '<div class="vids">' + V.map(v => '<div class="vid" data-src="' + esc(src(v)) + '" data-web="' + esc(web(v)) + '">' + (th(v) ? '<img src="' + esc(th(v)) + '" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'">' : '<div style="aspect-ratio:16/9"></div>') +
+  return sec('vid', 'Highlights', '<div class="clips">' + V.map(v => '<div class="clip" data-src="' + esc(src(v)) + '" data-web="' + esc(web(v)) + '">' + (th(v) ? '<img src="' + esc(th(v)) + '" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'">' : '<div style="aspect-ratio:16/9"></div>') +
     (v.duration ? '<span class="du">' + dur(+v.duration) + '</span>' : '') + '<span class="pl2">&#9654;</span><div class="cap2">' + esc(v.headline) + '</div></div>').join('') + '</div>', 4, V.length + (V.length === 1 ? ' clip' : ' clips') + ' · ESPN');
 }
 gp.addEventListener('click', e => {
-  const v = e.target.closest('.vid'); if (!v) return;
+  const v = e.target.closest('.clip'); if (!v) return;
   if (v.classList.contains('playing')) return;
   const src = v.dataset.src, web = v.dataset.web;
   const openWeb = () => { if (web) window.open(web, '_blank', 'noopener'); };
   if (!src) { openWeb(); return; }
-  gp.querySelectorAll('.vid.playing').forEach(o => { o.classList.remove('playing'); const vid = o.querySelector('video'); if (vid) { vid.pause(); vid.remove(); } o.querySelector('img,.ph3')?.removeAttribute('hidden'); o.querySelector('.pl2')?.removeAttribute('hidden'); });
+  gp.querySelectorAll('.clip.playing').forEach(o => { o.classList.remove('playing'); const vid = o.querySelector('video'); if (vid) { vid.pause(); vid.remove(); } o.querySelector('img,.ph3')?.removeAttribute('hidden'); o.querySelector('.pl2')?.removeAttribute('hidden'); });
   const img = v.querySelector('img'), pl = v.querySelector('.pl2');
   const vid = document.createElement('video'); vid.controls = true; vid.autoplay = true; vid.playsInline = true; vid.preload = 'metadata'; vid.src = src;
   if (img) img.setAttribute('hidden', ''); if (pl) pl.setAttribute('hidden', '');
